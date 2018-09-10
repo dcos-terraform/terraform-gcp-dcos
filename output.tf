@@ -63,6 +63,11 @@ output "dcos-infrastructure.masters.ssh_user" {
   value = "${module.dcos-infrastructure.masters.ssh_user}"
 }
 
+# Master Google Front End Load Balancer Address
+output "dcos-infrastructure.masters.loadbalancerr" {
+  value = "${module.dcos-infrastructure.masters.gfe.public_ip}"
+}
+
 # Number of private agents
 output "dcos-infrastructure.num_private_agents" {
   value = "${var.num_private_agents}"
@@ -176,6 +181,11 @@ output "dcos-infrastructure.masters.dcos_instance_os" {
 # Public Agent node tested OSes image
 output "dcos-infrastructure.public_agents.dcos_instance_os" {
   value = "${module.dcos-infrastructure.public_agents.dcos_instance_os}"
+}
+
+# Public Agent Google Front End Load Balancer Address
+output "dcos-infrastructure.public_agents.loadbalancer" {
+  value = "${module.dcos-infrastructure.public_agents.gfe.public_ip}"
 }
 
 # Private agent node tested OSes image
