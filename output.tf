@@ -64,7 +64,7 @@ output "dcos-infrastructure.masters.ssh_user" {
 }
 
 # Master Google Front End Load Balancer Address
-output "dcos-infrastructure.masters.loadbalancerr" {
+output "dcos-infrastructure.masters.loadbalancer" {
   value = "${module.dcos-infrastructure.masters.gfe.public_ip}"
 }
 
