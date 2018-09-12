@@ -180,7 +180,7 @@ variable "infra_disk_size" {
 
 # Global Infra Machine Type
 variable "infra_machine_type" {
-  default = ""
+  default = "n1-standard-8"
 }
 
 # Global Infra Tested OSes Image
