@@ -170,7 +170,7 @@ variable "infra_public_ssh_key_path" {
 
 # Global Infra Disk Type
 variable "infra_disk_type" {
-  default = ""
+  default = "pd-standard"
 }
 
 # Global Infra Disk Size
