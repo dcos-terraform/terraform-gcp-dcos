@@ -185,7 +185,7 @@ variable "infra_machine_type" {
 
 # Global Infra Tested OSes Image
 variable "infra_dcos_instance_os" {
-  default = ""
+  default = "coreos_1576.5.0"
 }
 
 # Master node tested OSes image

@@ -1,3 +1,9 @@
+# GCP Credentials JSON
+variable "credentials_path_json" {
+  description = "Google credentials path json"
+  type = "string"
+}
+
 variable "region" {
   description = "Google region of the DC/OS cluster"
   default     = "us-west1"
@@ -16,8 +22,8 @@ EOF
 
 variable "tags" {
   description = "Add custom tags to all resources"
-  type        = "map"
-  default     = {}
+  type        = "list"
+  default     = []
 }
 
 module "dcos" {
@@ -34,6 +40,7 @@ module "dcos" {
 
   dcos_type = "open"
   region    = "${var.region}"
+  credentials_path_json     = "${var.credentials_path_json}" 
 }
 
 output "cluster-address" {
