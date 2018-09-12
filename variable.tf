@@ -16,9 +16,7 @@ variable "org_id" {
 }
 
 # Existing Project ID
-variable "project_id" {
-  default = ""
-}
+variable "project_id" {}
 
 # Master CIDR Range
 variable "master_cidr_range" {
