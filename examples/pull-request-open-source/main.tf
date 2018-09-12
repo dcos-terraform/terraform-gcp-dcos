@@ -1,6 +1,11 @@
 # GCP Credentials JSON
-variable "credentials_path_json" {
+variable "credentials" {
   description = "Google credentials path json"
+  default     = ""
+}
+
+variable "project_id" {
+  description = "Google Project ID to launch in"
 }
 
 variable "region" {
@@ -49,7 +54,8 @@ module "dcos" {
   custom_dcos_download_path = "${var.custom_dcos_download_path}"
   dcos_version              = "${var.dcos_version}"
   region                    = "${var.region}"
-  credentials_path_json     = "${var.credentials_path_json}"
+  credentials               = "${var.credentials}"
+  project_id                = "${var.project_id}"
 }
 
 output "cluster-address" {
