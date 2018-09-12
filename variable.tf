@@ -31,7 +31,9 @@ variable "agent_cidr_range" {
 }
 
 # GCP Credentials JSON
-variable "credentials_path_json" {}
+variable "credentials" {
+  default = ""
+}
 
 # Bootstrap node disk size (gb)
 variable "bootstrap_disk_size" {
@@ -170,12 +172,12 @@ variable "infra_public_ssh_key_path" {
 
 # Global Infra Disk Type
 variable "infra_disk_type" {
-  default = "pd-standard"
+  default = "pd-ssd"
 }
 
 # Global Infra Disk Size
 variable "infra_disk_size" {
-  default = ""
+  default = "128"
 }
 
 # Global Infra Machine Type

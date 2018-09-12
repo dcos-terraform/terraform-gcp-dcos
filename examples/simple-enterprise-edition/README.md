@@ -38,8 +38,26 @@ echo "admin_ips=[\"1.2.3.0/24\", \"3.2.1.0/24\"]" >> cluster.tfvars
 echo "admin_ips=[\"0.0.0.0/0\"]" >> cluster.tfvars
 ```
 
-# Azure
-DC/OS Terraform can use the credentials passes via `az login`. You can [Download](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) the azure 2.0 cli with the link provided.
+## Setting up access to GCP Project
+
+To access your GCP Project from terraform you have two options:
+
+#### Install Google SDK
+
+Run this command to authenticate to the Google Provider. This will bring down your keys locally on the machine for terraform to use.
+
+```bash
+$ gcloud auth login
+$ gcloud auth application-default login
+```
+
+## Add your existing Google Project ID
+
+Add your google project ID in your cluster.tfvars so terraform can launch it in this project. Currently we do not create projects on behalf of the user.
+
+```bash
+echo "project_id=\"massive-bliss-781\"" >> cluster.tfvars
+```
 
 # terraform init
 Doing terraform init lets terraform download all the needed modules to spawn DC/OS Cluster on AWS

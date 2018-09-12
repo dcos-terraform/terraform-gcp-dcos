@@ -49,7 +49,7 @@ module "dcos" {
   custom_dcos_download_path = "${var.custom_dcos_download_path}"
   dcos_version              = "${var.dcos_version}"
   region                    = "${var.region}"
-  credentials_path_json     = "${var.credentials_path_json}" 
+  credentials_path_json     = "${var.credentials_path_json}"
 }
 
 output "cluster-address" {

@@ -1,5 +1,4 @@
 # Specify GCP Credentials JSON below
-credentials_path_json = "~/.gcp/demo-bliss-f23c196ae1c5.json"
 project_id = "massive-bliss-781"
 name_prefix = "mbernadin"
 dcos_cluster_name = "Prod Cluster"

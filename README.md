@@ -23,7 +23,7 @@ module "dcos-infrastructure" {
   billing_account           = "${var.billing_account}"
   project_id                = "${var.project_id}"
   region                    = "${var.region}"
-  credentials_path_json     = "${var.credentials_path_json}"
+  credentials     = "${var.credentials}"
   dcos_version              = "${var.dcos_version}"
   num_masters               = "${var.num_masters}"
   num_private_agents        = "${var.num_private_agents}"
@@ -89,7 +89,7 @@ module "dcos-core" {
 | bootstrap_machine_type | Bootstrap node machine type | string | `` | no |
 | bootstrap_public_ssh_key_path | Bootstrap Node Public SSH Key | string | `` | no |
 | bootstrap_ssh_user | Bootstrap node SSH User | string | `` | no |
-| credentials_path_json | GCP Credentials JSON | string | - | yes |
+| credentials | GCP Credentials JSON | string | - | yes |
 | custom_dcos_download_path | insert location of dcos installer script (optional) | string | `` | no |
 | dcos_cluster_name | Name of the DC/OS cluster | string | `dcos-example` | no |
 | dcos_license_key_contents | [Enterprise DC/OS] used to privide the license key of DC/OS for Enterprise Edition. Optional if license.txt is present on bootstrap node. | string | `` | no |

@@ -15,7 +15,7 @@ module "dcos-infrastructure" {
   billing_account           = "${var.billing_account}"
   project_id                = "${var.project_id}"
   region                    = "${var.region}"
-  credentials_path_json     = "${var.credentials_path_json}"
+  credentials               = "${var.credentials}"
   dcos_version              = "${var.dcos_version}"
   num_masters               = "${var.num_masters}"
   num_private_agents        = "${var.num_private_agents}"
