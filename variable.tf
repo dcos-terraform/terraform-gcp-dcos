@@ -259,3 +259,9 @@ variable "dcos_cluster_name" {
   description = "Name of the DC/OS cluster"
   default     = "dcos-example"
 }
+
+# Add special tags to the resources created by this module
+variable "tags" {
+  type    = "list"
+  default = []
+}
