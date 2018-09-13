@@ -16,7 +16,11 @@ variable "region" {
 
 variable "name_prefix" {
   description = "Name of the DC/OS cluster"
-  default     = "dcos-example"
+  default     = "example"
+}
+
+variable "infra_ssh_user" {
+  default = "core"
 }
 
 variable "public_ssh_key_path" {
@@ -37,10 +41,11 @@ module "dcos" {
 
   name_prefix               = "${var.name_prefix}"
   infra_public_ssh_key_path = "${var.public_ssh_key_path}"
+  infra_ssh_user            = "${var.infra_ssh_user}"
   tags                      = "${var.tags}"
 
   num_masters        = "1"
-  num_private_agents = "2"
+  num_private_agents = "3"
   num_public_agents  = "1"
 
   dcos_type   = "open"

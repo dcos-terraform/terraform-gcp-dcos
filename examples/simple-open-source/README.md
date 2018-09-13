@@ -11,15 +11,17 @@ if you already have a ssh key. Just read the public key content and assign it to
 
 ```bash
 # or similar depending on your environment
-echo "public_ssh_key_path=\"~/.ssh/id_rsa.pub\"" >> cluster.tfvars
+echo 'public_ssh_key_path = "~/.ssh/id_rsa.pub"' >> cluster.tfvars
 # lets set the clustername
-echo "name_prefix=\"my-ee-cluster\"" >> cluster.tfvars
+echo 'name_prefix = "open-cluster"' >> cluster.tfvars
 # we at mesosphere have to tag our instances with an owner and an expire date.
-echo "tags={Owner = \"$(whoami)\", Expires = \"2h\"}" >> cluster.tfvars
+echo 'tags = ["prod", "staging", "kubernetes"]' >> cluster.tfvars
 # we have to explicitly set the version.
-echo "dcos_version=\"1.10.8\"" >> cluster.tfvars
+echo 'dcos_version = "1.10.8"' >> cluster.tfvars
 # we can set the azure location
-echo "region=\"us-west1\"" >> cluster.tfvars
+echo 'region = "us-west1"' >> cluster.tfvars
+# set the google project id
+echo 'project_id = "massive-bliss-781"' >> cluster.tfvars
 ```
 
 ## admin_ips (optional)
@@ -51,10 +53,11 @@ $ gcloud auth application-default login
 
 ## Add your existing Google Project ID
 
-Add your google project ID in your cluster.tfvars so terraform can launch it in this project. Currently we do not create projects on behalf of the user.
+Add your google `project_id` in your cluster.tfvars so terraform can launch it in this project. Currently we do not create projects on behalf of the user. 
 
 ```bash
-echo "project_id=\"massive-bliss-781\"" >> cluster.tfvars
+$ grep project_id cluster.tfvars
+project_id="massive-bliss-781"
 ```
 
 # terraform init

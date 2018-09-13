@@ -15,6 +15,7 @@ variable "region" {
 
 variable "name_prefix" {
   description = "Name of the DC/OS cluster"
+  default     = "example"
 }
 
 variable "public_ssh_key_path" {

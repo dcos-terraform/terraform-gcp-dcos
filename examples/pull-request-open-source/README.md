@@ -11,17 +11,19 @@ if you already have a ssh key. Just read the public key content and assign it to
 
 ```bash
 # or similar depending on your environment
-echo "public_ssh_key_path=\"~/.ssh/id_rsa.pub\"" >> cluster.tfvars
+echo 'public_ssh_key_path = "~/.ssh/id_rsa.pub"' >> cluster.tfvars
 # lets set the clustername
-echo "name_prefix=\"my-ee-cluster\"" >> cluster.tfvars
+echo 'name_prefix = "pr-cluster"' >> cluster.tfvars
 # we at mesosphere have to tag our instances with an owner and an expire date.
-echo "tags={Owner = \"$(whoami)\", Expires = \"2h\"}" >> cluster.tfvars
+echo 'tags = ["prod", "staging", "kubernetes"]' >> cluster.tfvars
 # we have to explicitly set the version.
-echo "dcos_version=\"1.10.8\"" >> cluster.tfvars
+echo 'dcos_version = "1.10.8"' >> cluster.tfvars
 # we can set the azure location
-echo "region=\"us-west1\"" >> cluster.tfvars
+echo 'region = "us-west1"' >> cluster.tfvars
+# set the google project id
+echo 'project_id = "massive-bliss-781"' >> cluster.tfvars
 # now we habe to provider the link to dcos_generate_config.sh
-echo "custom_dcos_download_path=\"https://downloads.dcos.io/dcos/testing/pull/3303/dcos_generate_config.sh\""
+echo 'custom_dcos_download_path = "https://downloads.dcos.io/dcos/testing/pull/3303/dcos_generate_config.sh"' >> cluster.tfvars
 ```
 
 ## admin_ips (optional)
