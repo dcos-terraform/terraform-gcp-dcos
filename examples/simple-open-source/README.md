@@ -51,12 +51,13 @@ $ gcloud auth login
 $ gcloud auth application-default login
 ```
 
-## Add your existing Google Project ID
+#### Add required google project id
 
-Add your google `project_id` in your cluster.tfvars so terraform can launch it in this project. Currently we do not create projects on behalf of the user. 
+Ensure your google `project_id` in your cluster.tfvars so terraform can launch it in this project. Currently we do not create projects on behalf of the user.
 
 ```bash
-$ grep project_id cluster.tfvars
+# checking project id exist
+grep project_id cluster.tfvars
 project_id="massive-bliss-781"
 ```
 
