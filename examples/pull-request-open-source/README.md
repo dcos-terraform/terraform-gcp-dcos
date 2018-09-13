@@ -44,8 +44,8 @@ $ gcloud auth application-default login
 Ensure your google `project_id` in your cluster.tfvars so terraform can launch it in this project. Currently we do not create projects on behalf of the user.
 
 ```bash
-# checking project id exist
-grep project_id cluster.tfvars
+$ # checking project id exist
+$ grep project_id cluster.tfvars
 project_id="massive-bliss-781"
 ```
 
@@ -61,7 +61,7 @@ We expect your aws environment is properly setup. Check it with issuing `aws sts
 
 We now create the terraform plan which gets applied later on.
 ```bash
-$ terraform plan --var-file cluster.tfvars -out=cluster.plan
+$ terraform plan -var-file cluster.tfvars -out=cluster.plan
 ```
 
 # terraform apply
@@ -77,5 +77,5 @@ in the output section you will find the hostname of your cluster. With this host
 If you want to destroy your cluster again use
 
 ```bash
-$ terraform destroy --var-file cluster.tfvars
+$ terraform destroy -var-file cluster.tfvars
 ```
