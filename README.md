@@ -76,6 +76,10 @@ module "dcos-core" {
 }
 ```
 
+## Deploy DC/OS on GCP using Terraform
+
+Get started with using this module by reading the documentation here: [README.md](./docs/README.md)
+
 
 ## Inputs
 
