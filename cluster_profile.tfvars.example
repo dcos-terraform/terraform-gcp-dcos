@@ -1,20 +1,4 @@
-# Specify GCP Credentials JSON below
-project_id = "massive-bliss-781"
-name_prefix = "mbernadin"
-dcos_cluster_name = "Prod Cluster"
-infra_disk_type = "pd-ssd" # Optional
-infra_disk_size = "128"
-infra_machine_type = "n1-standard-8"
-#infra_ssh_user = "core"
-infra_dcos_instance_os = "coreos_1576.5.0"
-infra_public_ssh_key_path = "~/.ssh/key.pub"
-region = "us-west1"
+name_prefix = "dcos-example"
+dcos_cluster_name = "dcos-example"
+infra_public_ssh_key_path = "~/.ssh/id_rsa.pub"
 dcos_version = "1.11.4"
-
-####
-####
-
-num_masters = "3"
-num_private_agents = "1"
-num_public_agents = "1"
-dcos_type = "open"

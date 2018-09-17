@@ -12,11 +12,6 @@ module "dcos-infrastructure" {
   infra_dcos_instance_os    = "${var.infra_dcos_instance_os}"
   infra_public_ssh_key_path = "${var.infra_public_ssh_key_path}"
   dcos_version              = "${var.dcos_version}"
-  billing_account           = "${var.billing_account}"
-  project_id                = "${var.project_id}"
-  region                    = "${var.region}"
-  credentials               = "${var.credentials}"
-  dcos_version              = "${var.dcos_version}"
   num_masters               = "${var.num_masters}"
   num_private_agents        = "${var.num_private_agents}"
   num_public_agents         = "${var.num_public_agents}"
@@ -25,10 +20,8 @@ module "dcos-infrastructure" {
   infra_ssh_user            = "${var.infra_ssh_user}"
   tags                      = "${var.tags}"
 
-  # org_id = "998989278031"
-
   providers = {
-    aws = "google"
+    google = "google"
   }
 }
 

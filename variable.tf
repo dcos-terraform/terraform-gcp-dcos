@@ -3,7 +3,9 @@
 #########################
 
 #
-variable "name_prefix" {}
+variable "name_prefix" {
+  default = "dcos-gcp-example"
+}
 
 # GCP Builing Account
 variable "billing_account" {
@@ -15,9 +17,6 @@ variable "org_id" {
   default = ""
 }
 
-# Existing Project ID
-variable "project_id" {}
-
 # Master CIDR Range
 variable "master_cidr_range" {
   default = "10.64.0.0/16"
@@ -26,11 +25,6 @@ variable "master_cidr_range" {
 # Agent CIDR Range
 variable "agent_cidr_range" {
   default = "10.65.0.0/16"
-}
-
-# GCP Credentials JSON
-variable "credentials" {
-  default = ""
 }
 
 # Bootstrap node disk size (gb)
@@ -165,7 +159,6 @@ variable "infra_ssh_user" {
 
 # Global Infra Public SSH Key
 variable "infra_public_ssh_key_path" {
-  default = ""
 }
 
 # Global Infra Disk Type
@@ -215,12 +208,12 @@ variable "bootstrap_dcos_instance_os" {
 
 # Number of Masters
 variable "num_masters" {
-  default = "1"
+  default = "3"
 }
 
 # Number of Private Agents
 variable "num_private_agents" {
-  default = "1"
+  default = "2"
 }
 
 # Number of Public Agents
