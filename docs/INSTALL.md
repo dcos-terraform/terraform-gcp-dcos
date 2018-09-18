@@ -104,7 +104,7 @@ To install Enterprise DC/OS: add these variables below in your `cluster_profile.
 
 ```bash
 # using enterprise edition
-echo 'dcos_type = "ee"' >> cluster_profile.tfvars
+echo 'dcos_variant = "ee"' >> cluster_profile.tfvars
 # paste your license key here
 echo 'dcos_license_key_contents = "abcdef123456"' >> cluster_profile.tfvars
 ```
