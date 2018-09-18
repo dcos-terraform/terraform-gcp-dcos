@@ -4,7 +4,7 @@ Convenience wrapper for GCP
 
 ## Deploy DC/OS on GCP using Terraform
 
-Get started with using this module by reading the documentation here: [README.md](https://github.com/dcos-terraform/terraform-gcp-dcos/tree/master/docs)
+Get started with using this module by reading the documentation here: [README.md](https://github.com/dcos-terraform/terraform-gcp-dcos/tree/master/docs/README.md)
 
 ## Usage
 
