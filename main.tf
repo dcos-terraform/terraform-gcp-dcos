@@ -1,4 +1,8 @@
-provider "google" {}
+provider "google" {
+  credentials = "${var.credentials}"
+  region      = "${var.region}"
+  project     = "${var.project_id}"
+}
 
 module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
@@ -24,11 +28,6 @@ module "dcos-infrastructure" {
     google = "google"
   }
 }
-
-/////////////////////////////////////////
-/////////////////////////////////////////
-/////////////////////////////////////////
-/////////////////////////////////////////
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-install-remote-exec/null"

@@ -12,6 +12,14 @@ variable "billing_account" {
   default = ""
 }
 
+# Existing Project ID
+variable "project_id" {}
+
+# GCP Credentials JSON
+variable "credentials" {
+  default = ""
+}
+
 # GCP Org ID
 variable "org_id" {
   default = ""
@@ -158,8 +166,7 @@ variable "infra_ssh_user" {
 }
 
 # Global Infra Public SSH Key
-variable "infra_public_ssh_key_path" {
-}
+variable "infra_public_ssh_key_path" {}
 
 # Global Infra Disk Type
 variable "infra_disk_type" {
