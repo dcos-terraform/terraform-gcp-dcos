@@ -37,6 +37,30 @@ $ gcloud auth login
 $ gcloud auth application-default login
 ```
 
+### Custom terraform-dcos variables
+
+The default variables are tracked in the [variables.tf](../variables.tf) file. Since this file can be overwritten during updates when you may run `terraform get --update` when you want to fetch new releases of DC/OS to upgrade too, its best to use the cluster_profile.tfvars and set your custom terraform and DC/OS flags there. This way you can keep track of a single file that you can use manage the lifecycle of your cluster.
+
+To apply the configuration file, you can use this command below.
+
+### `cluster_profile.tfvars`
+
+```bash
+# or similar depending on your environment
+echo 'public_ssh_key_path = "~/.ssh/id_rsa.pub"' >> cluster_profile.tfvars
+# lets set the clustername
+echo 'name_prefix = "my-ee-cluster"' >> cluster_profile.tfvars
+# we at mesosphere have to tag our instances with an owner and an expire date.
+echo 'tags = ["prod", "staging", "kubernetes"]' >> cluster_profile.tfvars
+# we have to explicitly set the version.
+echo 'dcos_version = "1.10.8"' >> cluster_profile.tfvars
+# we can set the azure location
+echo 'region = "us-west1"' >> cluster_profile.tfvars
+# set the google project id
+echo 'project_id = "massive-bliss-781"' >> cluster_profile.tfvars
+
+```
+
 ## Configure your GCP SSH Keys
 
 Set the private key that you will be using to your ssh-agent and set public key in terraform. This will allow you to log into to the cluster after DC/OS is deployed and also helps Terraform setup your cluster at deployment time.
@@ -61,29 +85,26 @@ gcp_project = "massive-bliss-781"
 ...
 ```
 
-### Custom terraform-dcos variables
+#### Supported Operating Systems
 
-The default variables are tracked in the [variables.tf](/gcp/variables.tf) file. Since this file can be overwritten during updates when you may run `terraform get --update` when you want to fetch new releases of DC/OS to upgrade too, its best to use the [cluster_profile.tfvars](/gcp/cluster_profile.tfvars.example) and set your custom terraform and DC/OS flags there. This way you can keep track of a single file that you can use manage the lifecycle of your cluster.
+Here is the [list of operating systems supported](https://github.com/dcos-terraform/terraform-aws-tested-oses/tree/master/platform/cloud/aws).
 
-For a list of supported operating systems for this repo, see the ones that DC/OS recommends [here](https://docs.mesosphere.com/1.10/installing/oss/custom/system-requirements/). You can find the list that Terraform for this repo [here](http://github.com/dcos/tf_dcos_core).
+#### Supported DC/OS Versions
 
-To apply the configuration file, you can use this command below.
+Here is the list of DC/OS versions supported on dcos-terraform natively:
 
-### `cluster_profile.tfvars`
+- [OSS Versions](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/open/dcos-versions)
+- [Enterprise Versions](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/ee/dcos-versions)
+
+**Note**: Master DC/OS version is not meant for production use. It is only for CI/CD testing.
+
+## Configuring Enterprise DC/OS
+
+To install Enterprise DC/OS: add these variables below in your `cluster_profile.tfvars`
 
 ```bash
-# or similar depending on your environment
-echo 'public_ssh_key_path = "~/.ssh/id_rsa.pub"' >> cluster_profile.tfvars
-# lets set the clustername
-echo 'name_prefix = "my-ee-cluster"' >> cluster_profile.tfvars
-# we at mesosphere have to tag our instances with an owner and an expire date.
-echo 'tags = ["prod", "staging", "kubernetes"]' >> cluster_profile.tfvars
-# we have to explicitly set the version.
-echo 'dcos_version = "1.10.8"' >> cluster_profile.tfvars
-# we can set the azure location
-echo 'region = "us-west1"' >> cluster_profile.tfvars
-# set the google project id
-echo 'project_id = "massive-bliss-781"' >> cluster_profile.tfvars
+# using enterprise edition
+echo 'dcos_type = "ee"' >> cluster_profile.tfvars
 # paste your license key here
 echo 'dcos_license_key_contents = "abcdef123456"' >> cluster_profile.tfvars
 ```
