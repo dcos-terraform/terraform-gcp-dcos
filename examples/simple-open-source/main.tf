@@ -48,10 +48,10 @@ module "dcos" {
   num_private_agents = "3"
   num_public_agents  = "1"
 
-  dcos_type   = "open"
-  region      = "${var.region}"
-  credentials = "${var.credentials}"
-  project_id  = "${var.project_id}"
+  dcos_variant = "open"
+  region       = "${var.region}"
+  credentials  = "${var.credentials}"
+  project_id   = "${var.project_id}"
 }
 
 output "cluster-address" {
