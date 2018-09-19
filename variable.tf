@@ -13,7 +13,9 @@ variable "billing_account" {
 }
 
 # Existing Project ID
-variable "project_id" {}
+variable "project_id" {
+  default = ""
+}
 
 # GCP Credentials JSON
 variable "credentials" {
@@ -120,7 +122,7 @@ variable "master_public_ssh_key_path" {
   default = ""
 }
 
-# Private Agent node Public SSH Key 
+# Private Agent node Public SSH Key
 variable "private_agent_public_ssh_key_path" {
   default = ""
 }

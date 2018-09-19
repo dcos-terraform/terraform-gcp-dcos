@@ -1,8 +1,4 @@
-provider "google" {
-  credentials = "${var.credentials}"
-  region      = "${var.region}"
-  project     = "${var.project_id}"
-}
+provider "google" {}
 
 module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
