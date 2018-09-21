@@ -2,6 +2,10 @@
 # Infrastructure Variables
 #########################
 
+variable "ssh_public_key_file" {
+  description = "path to SSH public key. This is mandatory but can be set to an empty string if you want to use `ssh_public_key` with the key as string"
+}
+
 #
 variable "name_prefix" {
   default = "dcos-gcp-example"

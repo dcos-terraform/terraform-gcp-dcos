@@ -10,7 +10,7 @@ module "dcos-infrastructure" {
   infra_machine_type        = "${var.infra_machine_type}"
   infra_ssh_user            = "${var.infra_ssh_user}"
   infra_dcos_instance_os    = "${var.infra_dcos_instance_os}"
-  infra_public_ssh_key_path = "${var.infra_public_ssh_key_path}"
+  infra_public_ssh_key_path = "${var.ssh_public_key_file}"
   dcos_version              = "${var.dcos_version}"
   num_masters               = "${var.num_masters}"
   num_private_agents        = "${var.num_private_agents}"
