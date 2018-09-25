@@ -1,4 +1,4 @@
 name_prefix = "dcos-example"
 dcos_cluster_name = "dcos-example"
-infra_public_ssh_key_path = "~/.ssh/id_rsa.pub"
+ssh_public_key_file = "~/.ssh/id_rsa.pub"
 dcos_version = "1.11.4"
