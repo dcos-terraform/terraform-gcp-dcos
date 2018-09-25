@@ -1,4 +1,8 @@
-provider "google" {}
+provider "google" {
+  credentials = "${var.credentials}"
+  region      = "${var.region}"
+  project     = "${var.project_id}"
+}
 
 module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
@@ -18,6 +22,7 @@ module "dcos-infrastructure" {
   master_cidr_range         = "${var.master_cidr_range}"
   agent_cidr_range          = "${var.agent_cidr_range}"
   infra_ssh_user            = "${var.infra_ssh_user}"
+  admin_ips                 = "${var.admin_ips}"
   tags                      = "${var.tags}"
 
   providers = {

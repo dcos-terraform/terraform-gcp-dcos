@@ -6,7 +6,7 @@ variable "ssh_public_key_file" {
   description = "path to SSH public key. This is mandatory but can be set to an empty string if you want to use `ssh_public_key` with the key as string"
 }
 
-#
+# DC/OS Name Prefix for infra
 variable "name_prefix" {
   default = "dcos-gcp-example"
 }
@@ -26,9 +26,6 @@ variable "infra_ssh_user" {
   default = ""
 }
 
-# Global Infra Public SSH Key
-variable "infra_public_ssh_key_path" {}
-
 # Global Infra Disk Type
 variable "infra_disk_type" {
   default = "pd-ssd"
@@ -47,6 +44,25 @@ variable "infra_machine_type" {
 # Global Infra Tested OSes Image
 variable "infra_dcos_instance_os" {
   default = "coreos_1576.5.0"
+}
+
+# Existing Project ID
+variable "project_id" {}
+
+# GCP Region
+variable "region" {
+  default = "us-west1"
+}
+
+# Credentials file if user wants to use it
+variable "credentials" {
+  default = ""
+}
+
+# Admin IP range for cluster access
+variable "admin_ips" {
+  type    = "list"
+  default = ["0.0.0.0/0"]
 }
 
 ##############################
