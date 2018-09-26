@@ -122,7 +122,7 @@ For simplicity and example purposes, our variables are hard-coded.  If you have 
 
 You can find additional input variables and their descriptions [here](http://registry.terraform.io/modules/dcos-terraform/dcos/gcp/).
 
-3) Next, let’s initialize our modules.  Make sure you are cd'd into into the `dcos-tf-GCP-demo` folder where you just created your `main.tf` file.
+3) Next, let’s initialize our modules.  Make sure you are cd'd into into the `dcos-tf-gcp-demo` folder where you just created your `main.tf` file.
 
 ```bash
 terraform init
@@ -141,7 +141,7 @@ terraform plan -out=plan.out
 
 Writing our execution plan to a file allows us to pass the execution plan to the `apply` command below as well help us guarantee the accuracy of the plan. Note that this file is ONLY readable by Terraform.
 
-Afterwards, we should see a message like the one below, confirming that we have successfully saved to the `plan.out` file.  This file should appear in your `dcos-tf-GCP-demo` folder alongside `main.tf`.
+Afterwards, we should see a message like the one below, confirming that we have successfully saved to the `plan.out` file.  This file should appear in your `dcos-tf-gcp-demo` folder alongside `main.tf`.
 
 <p align=center>  
 <img src="../images/install/terraform-plan.png" />
