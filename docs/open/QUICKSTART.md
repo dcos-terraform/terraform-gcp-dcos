@@ -1,18 +1,18 @@
 # Quick Start Guide
 
-If you’re new to Terraform and/or want to deploy DC/OS on GCP quickly and effortlessly - please follow this guide.  We’ll walk you through step-by-step on:
+If you’re new to Terraform and/or want to deploy DC/OS on AWS quickly and effortlessly - please follow this guide.  We’ll walk you through step-by-step on how to:
 
 
-- Creating a DC/OS EE Cluster
-- Scaling the cluster
-- Upgrading the cluster
-- Deleting the cluster
+1) Create an Open Source DC/OS Cluster on AWS
+2) Scale the cluster to a larger number of nodes
+3) Upgrade the cluster to a newer version of DC/OS
+4) Destroy the cluster and all AWS resources associated with it
 
 # Prerequisites:
 Terraform, cloud credentials, and SSH keys:
 
-## You’ll need Terraform.
-If you're on a Mac environment with homebrew installed, run this command.
+## Installing Terraform.
+If you're on a Mac environment with homebrew installed, simply run the following command:
 ```bash
 brew install terraform
 ```
@@ -23,7 +23,7 @@ $ terraform version
 Terraform v0.11.8
 ```
 
-For help installing Terraform on a different OS, see [here](https://www.terraform.io/downloads.html):
+For help installing Terraform on a different OS, please see [here](https://www.terraform.io/downloads.html):
 
 ## Ensure you have default application credentials
 You have to have [Application Default Credentials](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login) in order to allow the gcp provider authenticate against GCP.
@@ -61,6 +61,7 @@ us-west1
 production
 ```
 
+
 # Creating a Cluster
 
 1) Let’s start by creating a local folder.
@@ -75,7 +76,6 @@ The example code below creates a DC/OS OSS 1.11.4 cluster on GCP with:
 - 1 Master
 - 2 Private Agents
 - 1 Public Agent
-- admin as the superuser username
 
 It also specifies that a the list of `masters-ips`, the `cluster-address`, and the address of the `public-agents-loadbalancer` should be printed out after cluster creation is complete.
 
@@ -86,26 +86,25 @@ It also specifies that the following output should be printed once cluster creat
 
 ```hcl
 module "dcos" {
-  source  = "dcos-terraform/dcos/gcp"
+  source  = "dcos-terraform/dcos/aws"
 
-  cluster_name        = "my-ee-dcos-cluster"
+  cluster_name        = "my-open-dcos"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
 
   num_masters        = "1"
   num_private_agents = "2"
   num_public_agents  = "1"
 
-  dcos_variant                 = "ee"
-  dcos_version                 = "1.11.4"
-  dcos_license_key_contents    = "LICENSE_KEY_HERE"
+  dcos_variant = "open"
+  dcos_version = "1.11.4"
 }
 
 output "masters-ips" {
-  value = "${module.dcos.masters-ips}"
+  value       = "${module.dcos.masters-ips}"
 }
 
 output "cluster-address" {
-  value = "${module.dcos.masters-loadbalancer}"
+  value       = "${module.dcos.masters-loadbalancer}"
 }
 
 output "public-agents-loadbalancer" {
@@ -117,8 +116,7 @@ For simplicity and example purposes, our variables are hard-coded.  If you have 
 
 You can find additional input variables and their descriptions [here](http://registry.terraform.io/modules/dcos-terraform/dcos/gcp/).
 
-
-3) Next, let’s initialize our modules.  Make sure you are cd'd into into the `dcos-tf-gcp-demo` folder where you just created your `main.tf` file.
+3) Next, let’s initialize our modules.  Make sure you are cd'd into into the `dcos-tf-aws-demo` folder where you just created your `main.tf` file.
 
 ```bash
 terraform init
@@ -128,6 +126,7 @@ terraform init
 <img src="../images/install/terraform-init.png" />
 </p>
 
+
 4) After Terraform has been initialized, the next step is to run the execution plan and save it to a static file - in this case, `plan.out`.
 
 ```bash
@@ -136,7 +135,7 @@ terraform plan -out=plan.out
 
 Writing our execution plan to a file allows us to pass the execution plan to the `apply` command below as well help us guarantee the accuracy of the plan. Note that this file is ONLY readable by Terraform.
 
-Afterwards, we should see a message like the one below, confirming that we have successfully saved to the `plan.out` file.  This file should appear in your `dcos-tf-gcp-demo` folder alongside `main.tf`.
+Afterwards, we should see a message like the one below, confirming that we have successfully saved to the `plan.out` file.  This file should appear in your `dcos-tf-aws-demo` folder alongside `main.tf`.
 
 <p align=center>  
 <img src="../images/install/terraform-plan.png" />
@@ -150,19 +149,20 @@ Every time you run `terraform plan`, the output will always detail the resources
 terraform apply plan.out
 ```
 
-Once Terraform has completed applying our plan, you should see an output similar to the one below.  You can now enter the `cluster-address` output to access your DC/OS cluster in the browser of your choice (Chrome, Safari recommended).  
-
+Once Terraform has completed applying our plan, you should see output similar to the following:  
 
 <p align=center>
 <img src="../images/install/terraform-apply.png" />
 </p>
 
-And congratulations - you’re done!  In just 4 steps, you’ve successfully installed a DC/OS cluster on GCP!
-
-Use the default login mentioned above: `bootstrapuser/deleteme`
+And congratulations - you’re done!  In just 4 steps, you’ve successfully installed a DC/OS cluster on AWS!
 
 <p align=center>
-<img src="../images/install/dcos-ee-login.png">
+<img src="../images/install/dcos-login.png"
+</p>
+
+<p align=center>
+<img src="../images/install/dcos-ui.png"
 </p>
 
 # Scaling Your Cluster
@@ -173,26 +173,25 @@ Terraform makes it easy to scale your cluster to add additional agents (public o
 
 ```hcl
 module "dcos" {
-  source  = "dcos-terraform/dcos/gcp"
+  source  = "dcos-terraform/dcos/aws"
 
-  cluster_name        = "my-ee-dcos-cluster"
+  cluster_name        = "my-open-dcos"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
 
   num_masters        = "1"
   num_private_agents = "3"
   num_public_agents  = "1"
 
-  dcos_variant                 = "ee"
-  dcos_version                 = "1.11.4"
-  dcos_license_key_contents    = "LICENSE_KEY_HERE"
+  dcos_variant = "open"
+  dcos_version = "1.11.4"
 }
 
 output "masters-ips" {
-  value = "${module.dcos.masters-ips}"
+  value       = "${module.dcos.masters-ips}"
 }
 
 output "cluster-address" {
-  value = "${module.dcos.masters-loadbalancer}"
+  value       = "${module.dcos.masters-loadbalancer}"
 }
 
 output "public-agents-loadbalancer" {
@@ -245,26 +244,25 @@ Since we’re now upgrading, however, we need to set this parameter to `upgrade`
 
 ```hcl
 module "dcos" {
-  source  = "dcos-terraform/dcos/gcp"
+  source  = "dcos-terraform/dcos/aws"
 
-  cluster_name        = "my-ee-dcos-cluster"
+  cluster_name        = "my-open-dcos"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
 
   num_masters        = "1"
   num_private_agents = "3"
   num_public_agents  = "1"
 
-  dcos_variant                 = "ee"
-  dcos_version                 = "1.11.5"
-  dcos_license_key_contents    = "LICENSE_KEY_HERE"
+  dcos_variant = "open"
+  dcos_version = "1.11.5"
 }
 
 output "masters-ips" {
-  value = "${module.dcos.masters-ips}"
+  value       = "${module.dcos.masters-ips}"
 }
 
 output "cluster-address" {
-  value = "${module.dcos.masters-loadbalancer}"
+  value       = "${module.dcos.masters-loadbalancer}"
 }
 
 output "public-agents-loadbalancer" {
@@ -272,7 +270,7 @@ output "public-agents-loadbalancer" {
 }
 ```
 
-2) Re-run our execution plan.
+2) Re-run our execution plan.  
 
 ```bash
 terraform plan -out=plan.out -var dcos_install_mode=upgrade
@@ -284,8 +282,6 @@ You should see an output like below.
 <img src="../images/upgrade/terraform-plan.png" />
 </p>
 
-If you are interested in learning more about the upgrade procedure that Terraform performs, please see the official [DC/OS Upgrade documentation](https://docs.mesosphere.com/1.11/installing/production/upgrading/).
-
 
 3) Apply the plan.
 
@@ -296,7 +292,7 @@ terraform apply plan.out
 Once the apply completes, you can verify that the cluster was upgraded via the DC/OS UI.
 
 <p align=center>
-<img src="../images/upgrade/cluster-details-ee.png" />
+<img src="../images/upgrade/cluster-details-open.png" />
 </p>
 
 
