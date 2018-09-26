@@ -40,7 +40,7 @@ $ gcloud auth application-default print-access-token
 EXMAPLE.EXAMPLE-1llO--ZEvh6gQ-qhpL0I3gHcCeDKG_EXAMPLE7WtAepmpp47c0RCv9e0Oq6QnpQ79RZlHKzOw69XMxI87M2Q
 ```
 ## Ensure GCP Default Region and Default Project
-In the current way the GCP provider is implemented we have to export the Region and Project into variables even if those are set in gcloud-cli.
+In the current way the GCP provider is implemented we have to export the Region and Project ID into variables even if those are set in gcloud-cli.
 
 ```bash
 export GOOGLE_REGION="desired-gcp-region"
@@ -49,7 +49,7 @@ export GOOGLE_PROJECT="desired-gcp-project"
 Example:
 ```bash
 export GOOGLE_REGION="us-west1"
-export GOOGLE_PROJECT="production"
+export GOOGLE_PROJECT="production-123"
 ```
 
 Ensure it is set:
@@ -58,7 +58,7 @@ Ensure it is set:
 us-west1
 
 > echo $GOOGLE_PROJECT
-production
+production-123
 ```
 
 

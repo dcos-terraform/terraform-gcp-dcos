@@ -40,7 +40,7 @@ $ gcloud auth application-default print-access-token
 EXMAPLE.EXAMPLE-1llO--ZEvh6gQ-qhpL0I3gHcCeDKG_EXAMPLE7WtAepmpp47c0RCv9e0Oq6QnpQ79RZlHKzOw69XMxI87M2Q
 ```
 ## Ensure GCP Default Region and Default Project
-In the current way the GCP provider is implemented we have to export the Region and Project into variables even if those are set in gcloud-cli.
+In the current way the GCP provider is implemented we have to export the Region and Project ID into variables even if those are set in gcloud-cli.
 
 ```bash
 export GOOGLE_REGION="desired-gcp-region"
@@ -49,7 +49,7 @@ export GOOGLE_PROJECT="desired-gcp-project"
 Example:
 ```bash
 export GOOGLE_REGION="us-west1"
-export GOOGLE_PROJECT="production"
+export GOOGLE_PROJECT="production-123"
 ```
 
 Ensure it is set:
@@ -58,8 +58,15 @@ Ensure it is set:
 us-west1
 
 > echo $GOOGLE_PROJECT
-production
+production-123
 ```
+
+DC/OS Enterprise Edition also requires a valid license key provided by Mesosphere that we will pass into our `main.tf` as `dcos_license_key_contents`. For this guide we are going to use the default superuser and password to login:
+
+Username: `bootstrapuser`
+Password: `deleteme`
+
+Please note that this should *NOT* be used in a Production environment and you will need generate a password hash.
 
 # Creating a Cluster
 
@@ -71,11 +78,11 @@ mkdir dcos-tf-gcp-demo && cd dcos-tf-gcp-demo
 
 2) Copy and paste the example code below into a new file and save it as `main.tf` in our folder.
 
-The example code below creates a DC/OS OSS 1.11.4 cluster on GCP with:
+The example code below creates a DC/OS EE 1.11.4 cluster on GCP with:
 - 1 Master
 - 2 Private Agents
 - 1 Public Agent
-- admin as the superuser username
+- `bootstrapuser/deleteme` login credentials
 
 It also specifies that a the list of `masters-ips`, the `cluster-address`, and the address of the `public-agents-loadbalancer` should be printed out after cluster creation is complete.
 
