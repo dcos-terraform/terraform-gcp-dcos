@@ -2,6 +2,12 @@ DC/OS on GCP
 ============
 Creates a DC/OS Cluster on GCP
 
+[Quick Start Guide for Open Source DC/OS](https://github.com/dcos-terraform/terraform-gcp-dcos/blob/master/docs/open/QUICKSTART.md)
+
+[Quick Start Guide for Enterprise DC/OS](https://github.com/dcos-terraform/terraform-gcp-dcos/blob/master/docs/ee/QUICKSTART.md)
+
+You can find more detailed documentation about this module here: [README.md](./docs/README.md)
+
 EXAMPLE
 -------
 
