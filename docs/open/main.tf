@@ -4,7 +4,7 @@ variable "dcos_install_mode" {
 }
 
 module "dcos" {
-  source = "dcos-terraform/dcos/aws"
+  source = "dcos-terraform/dcos/gcp"
 
   cluster_name        = "my-open-dcos-cluster"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"

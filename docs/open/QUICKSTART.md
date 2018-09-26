@@ -1,12 +1,12 @@
 # Quick Start Guide
 
-If you’re new to Terraform and/or want to deploy DC/OS on AWS quickly and effortlessly - please follow this guide.  We’ll walk you through step-by-step on how to:
+If you’re new to Terraform and/or want to deploy DC/OS on GCP quickly and effortlessly - please follow this guide.  We’ll walk you through step-by-step on how to:
 
 
-1) Create an Open Source DC/OS Cluster on AWS
+1) Create an Open Source DC/OS Cluster on GCP
 2) Scale the cluster to a larger number of nodes
 3) Upgrade the cluster to a newer version of DC/OS
-4) Destroy the cluster and all AWS resources associated with it
+4) Destroy the cluster and all GCP resources associated with it
 
 # Prerequisites:
 Terraform, cloud credentials, and SSH keys:
@@ -91,7 +91,7 @@ variable "dcos_install_mode" {
 }
 
 module "dcos" {
-  source  = "dcos-terraform/dcos/aws"
+  source = "dcos-terraform/dcos/gcp"
 
   cluster_name        = "my-open-dcos"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
@@ -122,7 +122,7 @@ For simplicity and example purposes, our variables are hard-coded.  If you have 
 
 You can find additional input variables and their descriptions [here](http://registry.terraform.io/modules/dcos-terraform/dcos/gcp/).
 
-3) Next, let’s initialize our modules.  Make sure you are cd'd into into the `dcos-tf-aws-demo` folder where you just created your `main.tf` file.
+3) Next, let’s initialize our modules.  Make sure you are cd'd into into the `dcos-tf-gcp-demo` folder where you just created your `main.tf` file.
 
 ```bash
 terraform init
@@ -141,7 +141,7 @@ terraform plan -out=plan.out
 
 Writing our execution plan to a file allows us to pass the execution plan to the `apply` command below as well help us guarantee the accuracy of the plan. Note that this file is ONLY readable by Terraform.
 
-Afterwards, we should see a message like the one below, confirming that we have successfully saved to the `plan.out` file.  This file should appear in your `dcos-tf-aws-demo` folder alongside `main.tf`.
+Afterwards, we should see a message like the one below, confirming that we have successfully saved to the `plan.out` file.  This file should appear in your `dcos-tf-gcp-demo` folder alongside `main.tf`.
 
 <p align=center>  
 <img src="../images/install/terraform-plan.png" />
@@ -161,7 +161,7 @@ Once Terraform has completed applying our plan, you should see output similar to
 <img src="../images/install/terraform-apply.png" />
 </p>
 
-And congratulations - you’re done!  In just 4 steps, you’ve successfully installed a DC/OS cluster on AWS!
+And congratulations - you’re done!  In just 4 steps, you’ve successfully installed a DC/OS cluster on GCP!
 
 <p align=center>
 <img src="../images/install/dcos-login.png"
@@ -184,7 +184,7 @@ variable "dcos_install_mode" {
 }
 
 module "dcos" {
-  source  = "dcos-terraform/dcos/aws"
+  source = "dcos-terraform/dcos/gcp"
 
   cluster_name        = "my-open-dcos"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
@@ -261,7 +261,7 @@ variable "dcos_install_mode" {
 }
 
 module "dcos" {
-  source  = "dcos-terraform/dcos/aws"
+  source = "dcos-terraform/dcos/gcp"
 
   cluster_name        = "my-open-dcos"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
