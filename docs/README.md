@@ -21,8 +21,7 @@ If you want to use this in your own environment, feel free to fork this and cust
 
 ## Documentation	
 
-1. [Quick Start](./quickstart/README.md)	
-2. [Deploying on GCP](./INSTALL.md)	
-3. [Upgrading DC/OS](./UPGRADE.md)	
-4. [Maintaining Nodes](./MAINTAIN.md)	
-5. [Destroy](./DESTROY.md)
+1. [Deploying on GCP](./INSTALL.md)
+2. [Upgrading DC/OS](./UPGRADE.md)
+3. [Maintaining Nodes](./MAINTAIN.md)
+4. [Destroy](./DESTROY.md)
