@@ -14,7 +14,7 @@ variable "region" {
   default     = "us-west1"
 }
 
-variable "name_prefix" {
+variable "cluster_name" {
   description = "Name of the DC/OS cluster"
   default     = "example"
 }
@@ -39,7 +39,7 @@ module "dcos" {
   source  = "dcos-terraform/dcos/gcp"
   version = "~> 0.0"
 
-  name_prefix               = "${var.name_prefix}"
+  cluster_name              = "${var.cluster_name}"
   infra_public_ssh_key_path = "${var.public_ssh_key_path}"
   infra_ssh_user            = "${var.infra_ssh_user}"
   tags                      = "${var.tags}"

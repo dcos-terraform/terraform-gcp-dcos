@@ -31,7 +31,7 @@ module "dcos" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| admin_ips | List of CIDR admin IPs | string | `<list>` | no |
+| admin_ips | List of CIDR admin IPs | list | - | yes |
 | availability_zones | Availability zones to be used | list | `<list>` | no |
 | bootstrap_gcp_image | [BOOTSTRAP] Image to be used | string | `` | no |
 | bootstrap_machine_type | [BOOTSTRAP] Machine type | string | `n1-standard-2` | no |

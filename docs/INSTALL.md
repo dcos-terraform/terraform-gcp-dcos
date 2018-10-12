@@ -49,7 +49,7 @@ To apply the configuration file, you can use this command below.
 # or similar depending on your environment
 echo 'public_ssh_key_path = "~/.ssh/id_rsa.pub"' >> cluster_profile.tfvars
 # lets set the clustername
-echo 'name_prefix = "my-ee-cluster"' >> cluster_profile.tfvars
+echo 'cluster_name = "my-ee-cluster"' >> cluster_profile.tfvars
 # we at mesosphere have to tag our instances with an owner and an expire date.
 echo 'tags = ["prod", "staging", "kubernetes"]' >> cluster_profile.tfvars
 # we have to explicitly set the version.

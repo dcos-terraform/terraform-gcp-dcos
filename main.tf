@@ -34,7 +34,7 @@ module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
   version = "~> 0.0"
 
-  name_prefix = "${var.cluster_name}"
+  cluster_name = "${var.cluster_name}"
 
   infra_dcos_instance_os    = "${var.dcos_instance_os}"
   infra_public_ssh_key_path = "${var.ssh_public_key_file}"
