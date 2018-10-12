@@ -68,9 +68,10 @@ module "dcos-infrastructure" {
   num_public_agents  = "${var.num_public_agents}"
   admin_ips          = "${var.admin_ips}"
 
-  # labels                      = "${var.labels}"
+  labels = "${var.labels}"
 
   dcos_version = "${var.dcos_version}"
+
   providers = {
     google = "google"
   }
