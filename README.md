@@ -31,7 +31,7 @@ module "dcos" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| admin_ips | List of CIDR admin IPs | string | `<list>` | no |
+| admin_ips | List of CIDR admin IPs | list | - | yes |
 | availability_zones | Availability zones to be used | list | `<list>` | no |
 | bootstrap_gcp_image | [BOOTSTRAP] Image to be used | string | `` | no |
 | bootstrap_machine_type | [BOOTSTRAP] Machine type | string | `n1-standard-2` | no |
@@ -40,6 +40,7 @@ module "dcos" {
 | bootstrap_root_volume_size | [BOOTSTRAP] Root volume size in GB | string | `80` | no |
 | bootstrap_root_volume_type | [BOOTSTRAP] Root volume type | string | `pd-standard` | no |
 | cluster_name | Name of the DC/OS cluster | string | `dcos-example` | no |
+| cluster_name_random_string | Add a random string to the cluster name | string | `false` | no |
 | custom_dcos_download_path | insert location of dcos installer script (optional) | string | `` | no |
 | dcos_adminrouter_tls_1_0_enabled | Indicates whether to enable TLSv1 support in Admin Router. (optional) | string | `` | no |
 | dcos_adminrouter_tls_1_1_enabled | Indicates whether to enable TLSv1.1 support in Admin Router. (optional) | string | `` | no |
@@ -154,6 +155,7 @@ module "dcos" {
 | private_agents_os | [PRIVATE AGENTS] Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `` | no |
 | private_agents_root_volume_size | [PRIVATE AGENTS] Root volume size in GB | string | `120` | no |
 | private_agents_root_volume_type | [PRIVATE AGENTS] Root volume type | string | `pd-ssd` | no |
+| public_agents_additional_ports | List of additional ports on public agents (in addition to 80 and 443) | string | `<list>` | no |
 | public_agents_gcp_image | [PUBLIC AGENTS] Image to be used | string | `` | no |
 | public_agents_machine_type | [PUBLIC AGENTS] Machine type | string | `n1-standard-4` | no |
 | public_agents_os | [PUBLIC AGENTS] Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `` | no |

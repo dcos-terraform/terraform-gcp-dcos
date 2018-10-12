@@ -73,7 +73,6 @@ We have designed this project to be flexible. Here are the example working varia
 For advanced users with stringent requirements, here are DC/OS flag examples you can simply paste in `main.tf` file.
 The default variables inputs are tracked in the [terraform-gcp-dcos](https://registry.terraform.io/modules/dcos-terraform/dcos/gcp) terraform registry.
 
-
 ```bash
 $ cat main.tf
 ...

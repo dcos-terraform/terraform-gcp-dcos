@@ -30,11 +30,20 @@
 
 provider "google" {}
 
+resource "random_id" "id" {
+  byte_length = 2
+  prefix      = "${var.cluster_name}"
+}
+
+locals {
+  cluster_name = "${var.cluster_name_random_string ? random_id.id.hex : var.cluster_name}"
+}
+
 module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
   version = "~> 0.0"
 
-  name_prefix = "${var.cluster_name}"
+  cluster_name = "${local.cluster_name}"
 
   infra_dcos_instance_os    = "${var.dcos_instance_os}"
   infra_public_ssh_key_path = "${var.ssh_public_key_file}"
@@ -57,20 +66,22 @@ module "dcos-infrastructure" {
   private_agent_disk_size        = "${var.private_agents_root_volume_size}"
   private_agent_disk_type        = "${var.private_agents_root_volume_type}"
 
-  public_agent_image            = "${var.private_agents_gcp_image}"
-  public_agent_machine_type     = "${var.private_agents_machine_type}"
-  public_agent_dcos_instance_os = "${var.private_agents_os}"
-  public_agent_disk_size        = "${var.private_agents_root_volume_size}"
-  public_agent_disk_type        = "${var.private_agents_root_volume_type}"
+  public_agent_image             = "${var.private_agents_gcp_image}"
+  public_agent_machine_type      = "${var.private_agents_machine_type}"
+  public_agent_dcos_instance_os  = "${var.private_agents_os}"
+  public_agent_disk_size         = "${var.private_agents_root_volume_size}"
+  public_agent_disk_type         = "${var.private_agents_root_volume_type}"
+  public_agents_additional_ports = ["${var.public_agents_additional_ports}"]
 
   num_masters        = "${var.num_masters}"
   num_private_agents = "${var.num_private_agents}"
   num_public_agents  = "${var.num_public_agents}"
   admin_ips          = "${var.admin_ips}"
 
-  # labels                      = "${var.labels}"
+  labels = "${var.labels}"
 
   dcos_version = "${var.dcos_version}"
+
   providers = {
     google = "google"
   }
@@ -106,7 +117,7 @@ module "dcos-core" {
   num_public_agents       = "${var.num_public_agents}"
 
   # DC/OS options
-  dcos_cluster_name = "${coalesce(var.dcos_cluster_name, var.cluster_name)}"
+  dcos_cluster_name = "${coalesce(var.dcos_cluster_name, local.cluster_name)}"
 
   custom_dcos_download_path                    = "${var.custom_dcos_download_path}"
   dcos_adminrouter_tls_1_0_enabled             = "${var.dcos_adminrouter_tls_1_0_enabled}"

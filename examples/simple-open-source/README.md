@@ -13,7 +13,7 @@ if you already have a ssh key. Just read the public key content and assign it to
 # or similar depending on your environment
 echo 'public_ssh_key_path = "~/.ssh/id_rsa.pub"' >> cluster.tfvars
 # lets set the clustername
-echo 'name_prefix = "open-cluster"' >> cluster.tfvars
+echo 'cluster_name = "open-cluster"' >> cluster.tfvars
 # we at mesosphere have to tag our instances with an owner and an expire date.
 echo 'tags = ["prod", "staging", "kubernetes"]' >> cluster.tfvars
 # we have to explicitly set the version.
