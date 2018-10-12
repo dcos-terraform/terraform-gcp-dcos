@@ -337,6 +337,8 @@ Once the apply completes, you can verify that the cluster was upgraded via the D
 <img src="../images/upgrade/cluster-details-open.png" />
 </p>
 
+# Maintenance
+ For instructions on how to maintain your cluster, follow the [maintenance](https://github.com/dcos-terraform/terraform-gcp-dcos/blob/master/docs/MAINTAIN.md) documentation.
 
 # Deleting Your Cluster
 If you ever decide you would like to destroy your cluster, simply run the following command and wait for it to complete:
