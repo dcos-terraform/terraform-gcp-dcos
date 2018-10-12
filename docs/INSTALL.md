@@ -18,10 +18,20 @@ mkdir dcos-installer
 cd dcos-installer
 ```
 
+## Initialize Terraform
+
 Run this command below to have Terraform initialized from this repository. There is **no git clone of this repo required** as Terraform performs this for you.
 
 ```
-terraform init -from-module github.com/dcos-terraform/terraform-gcp-dcos
+curl -O https://raw.githubusercontent.com/dcos-terraform/terraform-gcp-dcos/master/docs/quickstart/main.tf
+terraform init
+```
+
+## Modify main.tf variables
+
+```bash
+# edit the main.tf file
+vi main.tf # change "ssh_public_key_file" to your local file ssh path and other variables you desire
 ```
 
 ## Setting up access to GCP Project
@@ -37,29 +47,88 @@ $ gcloud auth login
 $ gcloud auth application-default login
 ```
 
-### Custom terraform-dcos variables
+#### Supported Operating Systems
 
-The default variables are tracked in the [variables.tf](../variables.tf) file. Since this file can be overwritten during updates when you may run `terraform get --update` when you want to fetch new releases of DC/OS to upgrade too, its best to use the cluster_profile.tfvars and set your custom terraform and DC/OS flags there. This way you can keep track of a single file that you can use manage the lifecycle of your cluster.
+Here is the [list of operating systems supported](https://github.com/dcos-terraform/terraform-template-gcp-tested-oses/tree/master/platform/cloud/gcp).
 
-To apply the configuration file, you can use this command below.
+#### Supported DC/OS Versions
 
-### `cluster_profile.tfvars`
+Here is the list of DC/OS versions supported on dcos-terraform natively:
+
+- [OSS Versions](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/open/dcos-versions)
+- [Enterprise Versions](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/ee/dcos-versions)
+
+**Note**: Master DC/OS version is not meant for production use. It is only for CI/CD testing.
+
+To apply the configuration file and you accept all the default variables you can use this command below, otherwise you can continue along with this guide.
 
 ```bash
-# or similar depending on your environment
-echo 'public_ssh_key_path = "~/.ssh/id_rsa.pub"' >> cluster_profile.tfvars
-# lets set the clustername
-echo 'name_prefix = "my-ee-cluster"' >> cluster_profile.tfvars
-# we at mesosphere have to tag our instances with an owner and an expire date.
-echo 'tags = ["prod", "staging", "kubernetes"]' >> cluster_profile.tfvars
-# we have to explicitly set the version.
-echo 'dcos_version = "1.10.8"' >> cluster_profile.tfvars
-# we can set the azure location
-echo 'region = "us-west1"' >> cluster_profile.tfvars
-# set the google project id
-echo 'project_id = "massive-bliss-781"' >> cluster_profile.tfvars
-
+terraform apply
 ```
+
+## Advanced YAML Configuration
+
+We have designed this project to be flexible. Here are the example working variables that allows very deep customization by using a single `main.tf` file.
+
+For advanced users with stringent requirements, here are DC/OS flag examples you can simply paste in `main.tf` file.
+The default variables inputs are tracked in the [terraform-gcp-dcos](https://registry.terraform.io/modules/dcos-terraform/dcos/gcp) terraform registry.
+
+
+```bash
+$ cat main.tf
+...
+module "dcos" {
+  source = "dcos-terraform/dcos/gcp"
+
+  # additional example variables in the module
+  dcos_version = "1.11.5"
+  dcos_instance_os = "centos_7.3"
+  num_masters = "3"
+  num_private_agents = "2"
+  num_public_agents = "1"
+  dcos_cluster_name = "DC/OS Cluster"
+  dcos_cluster_docker_credentials_enabled =  "true"
+  dcos_cluster_docker_credentials_write_to_etc = "true"
+  dcos_cluster_docker_credentials_dcos_owned = "false"
+  dcos_cluster_docker_registry_url = "https://index.docker.io"
+  dcos_use_proxy = "yes"
+  dcos_http_proxy = "example.com"
+  dcos_https_proxy = "example.com"
+  dcos_no_proxy = <<EOF
+  # YAML
+   - "internal.net"
+   - "169.254.169.254"
+  EOF
+  dcos_overlay_network = <<EOF
+  # YAML
+      vtep_subnet: 44.128.0.0/20
+      vtep_mac_oui: 70:B3:D5:00:00:00
+      overlays:
+        - name: dcos
+          subnet: 12.0.0.0/8
+          prefix: 26
+  EOF
+  dcos_rexray_config = <<EOF
+  # YAML
+    rexray:
+      loglevel: warn
+      modules:
+        default-admin:
+          host: tcp://127.0.0.1:61003
+      storageDrivers:
+      - ec2
+      volume:
+        unmount:
+          ignoreusedcount: true
+  EOF
+  dcos_cluster_docker_credentials = <<EOF
+  # YAML
+    auths:
+      'https://index.docker.io/v1/':
+        auth: Ze9ja2VyY3licmljSmVFOEJrcTY2eTV1WHhnSkVuVndjVEE=
+  EOF
+```
+**Note**: The YAML comment is required for the DC/OS specific YAML settings.
 
 ## Configure your GCP SSH Keys
 
@@ -84,95 +153,6 @@ $ cat cluster_profile.tfvars
 gcp_project = "massive-bliss-781"
 ...
 ```
-
-#### Supported Operating Systems
-
-Here is the [list of operating systems supported](https://github.com/dcos-terraform/terraform-aws-tested-oses/tree/master/platform/cloud/aws).
-
-#### Supported DC/OS Versions
-
-Here is the list of DC/OS versions supported on dcos-terraform natively:
-
-- [OSS Versions](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/open/dcos-versions)
-- [Enterprise Versions](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/ee/dcos-versions)
-
-**Note**: Master DC/OS version is not meant for production use. It is only for CI/CD testing.
-
-## Configuring Enterprise DC/OS
-
-To install Enterprise DC/OS: add these variables below in your `cluster_profile.tfvars`
-
-```bash
-# using enterprise edition
-echo 'dcos_variant = "ee"' >> cluster_profile.tfvars
-# paste your license key here
-echo 'dcos_license_key_contents = "abcdef123456"' >> cluster_profile.tfvars
-```
-
-### Deploy DC/OS
-
-```bash
-terraform apply -var-file cluster_profile.tfvars
-```
-
-#### Advance YAML Configuration
-
-We have designed this project to be flexible. Here are the example working variables that allows very deep customization by using a single `tfvars` file.
-
-For advance users with stringent requirements, here are the DC/OS flags examples where you can simply paste your YAML configuration in your cluster_profile.tfvars. The alternative to YAML is to convert it to JSON.  
-
-```bash
-$ cat cluster_profile.tfvars
-dcos_version = "1.10.2"
-os = "centos_7.3"
-num_of_masters = "3"
-num_of_private_agents = "2"
-num_of_public_agents = "1"
-expiration = "6h"  
-dcos_security = "permissive"
-dcos_cluster_docker_credentials_enabled =  "true"
-dcos_cluster_docker_credentials_write_to_etc = "true"
-dcos_cluster_docker_credentials_dcos_owned = "false"
-dcos_cluster_docker_registry_url = "https://index.docker.io"
-dcos_use_proxy = "yes"
-dcos_http_proxy = "example.com"
-dcos_https_proxy = "example.com"
-dcos_no_proxy = <<EOF
-# YAML
- - "internal.net"
- - "169.254.169.254"
-EOF
-dcos_overlay_network = <<EOF
-# YAML
-    vtep_subnet: 44.128.0.0/20
-    vtep_mac_oui: 70:B3:D5:00:00:00
-    overlays:
-      - name: dcos
-        subnet: 12.0.0.0/8
-        prefix: 26
-EOF
-dcos_rexray_config = <<EOF
-# YAML
-  rexray:
-    loglevel: warn
-    modules:
-      default-admin:
-        host: tcp://127.0.0.1:61003
-    storageDrivers:
-    - ec2
-    volume:
-      unmount:
-        ignoreusedcount: true
-EOF
-dcos_cluster_docker_credentials = <<EOF
-# YAML
-  auths:
-    'https://index.docker.io/v1/':
-      auth: Ze9ja2VyY3licmljSmVFOEJrcTY2eTV1WHhnSkVuVndjVEE=
-EOF
-gcp_ssh_pub_key_file = "INSERT_PUBLIC_KEY_PATH_HERE"
-```
-_Note: The YAML comment is required for dcos-terraform specific YAML settings._
 
 ## Documentation
 
