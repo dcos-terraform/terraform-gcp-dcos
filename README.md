@@ -40,6 +40,7 @@ module "dcos" {
 | bootstrap_root_volume_size | [BOOTSTRAP] Root volume size in GB | string | `80` | no |
 | bootstrap_root_volume_type | [BOOTSTRAP] Root volume type | string | `pd-standard` | no |
 | cluster_name | Name of the DC/OS cluster | string | `dcos-example` | no |
+| cluster_name_random_string | Add a random string to the cluster name | string | `false` | no |
 | custom_dcos_download_path | insert location of dcos installer script (optional) | string | `` | no |
 | dcos_adminrouter_tls_1_0_enabled | Indicates whether to enable TLSv1 support in Admin Router. (optional) | string | `` | no |
 | dcos_adminrouter_tls_1_1_enabled | Indicates whether to enable TLSv1.1 support in Admin Router. (optional) | string | `` | no |

@@ -30,11 +30,20 @@
 
 provider "google" {}
 
+resource "random_id" "id" {
+  byte_length = 2
+  prefix      = "${var.cluster_name}"
+}
+
+locals {
+  cluster_name = "${var.cluster_name_random_string ? random_id.id.hex : var.cluster_name}"
+}
+
 module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
   version = "~> 0.0"
 
-  cluster_name = "${var.cluster_name}"
+  cluster_name = "${local.cluster_name}"
 
   infra_dcos_instance_os    = "${var.dcos_instance_os}"
   infra_public_ssh_key_path = "${var.ssh_public_key_file}"
@@ -108,7 +117,7 @@ module "dcos-core" {
   num_public_agents       = "${var.num_public_agents}"
 
   # DC/OS options
-  dcos_cluster_name = "${coalesce(var.dcos_cluster_name, var.cluster_name)}"
+  dcos_cluster_name = "${coalesce(var.dcos_cluster_name, local.cluster_name)}"
 
   custom_dcos_download_path                    = "${var.custom_dcos_download_path}"
   dcos_adminrouter_tls_1_0_enabled             = "${var.dcos_adminrouter_tls_1_0_enabled}"
