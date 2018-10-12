@@ -146,3 +146,8 @@ variable "public_agents_machine_type" {
   description = "[PUBLIC AGENTS] Machine type"
   default     = "n1-standard-4"
 }
+
+variable "public_agents_additional_ports" {
+  description = "List of additional ports on public agents (in addition to 80 and 443)"
+  default     = []
+}

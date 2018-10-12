@@ -57,11 +57,12 @@ module "dcos-infrastructure" {
   private_agent_disk_size        = "${var.private_agents_root_volume_size}"
   private_agent_disk_type        = "${var.private_agents_root_volume_type}"
 
-  public_agent_image            = "${var.private_agents_gcp_image}"
-  public_agent_machine_type     = "${var.private_agents_machine_type}"
-  public_agent_dcos_instance_os = "${var.private_agents_os}"
-  public_agent_disk_size        = "${var.private_agents_root_volume_size}"
-  public_agent_disk_type        = "${var.private_agents_root_volume_type}"
+  public_agent_image             = "${var.private_agents_gcp_image}"
+  public_agent_machine_type      = "${var.private_agents_machine_type}"
+  public_agent_dcos_instance_os  = "${var.private_agents_os}"
+  public_agent_disk_size         = "${var.private_agents_root_volume_size}"
+  public_agent_disk_type         = "${var.private_agents_root_volume_type}"
+  public_agents_additional_ports = ["${var.public_agents_additional_ports}"]
 
   num_masters        = "${var.num_masters}"
   num_private_agents = "${var.num_private_agents}"
