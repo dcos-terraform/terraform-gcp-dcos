@@ -20,7 +20,7 @@ cd dcos-installer
 
 ## Initialize Terraform
 
-Run this command below to have Terraform initialized from this repository. There is **no git clone of this repo required** as Terraform performs this for you.
+Use the following command to initialize Terraform from this repository. There is no git clone of this repo required as Terraform performs this for you.
 
 ```
 curl -O https://raw.githubusercontent.com/dcos-terraform/terraform-gcp-dcos/master/docs/quickstart/main.tf
@@ -58,7 +58,7 @@ Here is the list of DC/OS versions supported on dcos-terraform natively:
 - [OSS Versions](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/open/dcos-versions)
 - [Enterprise Versions](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/ee/dcos-versions)
 
-**Note**: Master DC/OS version is not meant for production use. It is only for CI/CD testing.
+**NOTE:** Master DC/OS version is not meant for production use. It is only for CI/CD testing.
 
 To apply the configuration file and you accept all the default variables you can use this command below, otherwise you can continue along with this guide.
 
@@ -68,9 +68,9 @@ terraform apply
 
 ## Advanced YAML Configuration
 
-We have designed this project to be flexible. Here are the example working variables that allows very deep customization by using a single `main.tf` file.
+The configuration templates using Terraform are designed to be flexible. Here is an example of working variables that allows deep customization by using a single main.tf file.
 
-For advanced users with stringent requirements, here are DC/OS flag examples you can simply paste in `main.tf` file.
+For advanced users with stringent requirements, paste the DC/OS flag examples in main.tf file.
 The default variables inputs are tracked in the [terraform-gcp-dcos](https://registry.terraform.io/modules/dcos-terraform/dcos/gcp) terraform registry.
 
 ```bash
@@ -127,7 +127,7 @@ module "dcos" {
         auth: Ze9ja2VyY3licmljSmVFOEJrcTY2eTV1WHhnSkVuVndjVEE=
   EOF
 ```
-**Note**: The YAML comment is required for the DC/OS specific YAML settings.
+**NOTE:** The YAML comment is required for the DC/OS specific YAML settings.
 
 ## Configure your GCP SSH Keys
 
