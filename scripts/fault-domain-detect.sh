@@ -5,7 +5,7 @@ AWS_URL="http://169.254.169.254/latest/dynamic/instance-identity/document"
 AZURE_REGION_URL="http://169.254.169.254/metadata/instance/compute/location?api-version=2017-08-01&format=text"
 AZURE_FD_URL="http://169.254.169.254/metadata/instance/compute/platformFaultDomain?api-version=2017-04-02&format=text"
 
-GCP_METADATA_URL="http://metadata.google.internal/computeMetadata/v1/instance/zone"
+GCP_METADATA_URL="http://169.254.169.254/computeMetadata/v1/instance/zone"
 
 
 function aws() {
@@ -79,7 +79,7 @@ function main() {
     fi
 
     # try gcp
-    curl -f -q m1 -H "Metadata-Flavor: Google" "$GCP_METADATA_URL" >/dev/null 2>&1
+    curl -f -q -m1 -H "Metadata-Flavor: Google" "$GCP_METADATA_URL" >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         PROVIDERS+=("gcp")
     fi
