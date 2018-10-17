@@ -5,7 +5,7 @@ AWS_URL="http://169.254.169.254/latest/dynamic/instance-identity/document"
 AZURE_REGION_URL="http://169.254.169.254/metadata/instance/compute/location?api-version=2017-08-01&format=text"
 AZURE_FD_URL="http://169.254.169.254/metadata/instance/compute/platformFaultDomain?api-version=2017-04-02&format=text"
 
-GCP_METADATA_URL="http://metadata/computeMetadata/v1/instance/zone"
+GCP_METADATA_URL="http://169.254.169.254/computeMetadata/v1/instance/zone"
 
 
 function aws() {
