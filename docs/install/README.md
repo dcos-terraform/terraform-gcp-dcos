@@ -156,6 +156,6 @@ gcp_project = "massive-bliss-781"
 ## Documentation
 
 1. Deploying on GCP
-2. [Upgrading DC/OS](./UPGRADE.md)
-3. [Maintaining Nodes](./MAINTAIN.md)
-4. [Destroy](./DESTROY.md)
+2. [Upgrading DC/OS](./upgrade/README.md)
+3. [Maintaining Nodes](./maintain/README.md)
+4. [Destroy](./destroy/README.md)
