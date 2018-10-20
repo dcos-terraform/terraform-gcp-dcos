@@ -1,4 +1,10 @@
-# Destroy Cluster
+---
+layout: layout.pug
+excerpt: Shutdown/destroy all DC/OS resources on GCP using Terraform
+title: Destroy Cluster on GCP
+navigationTitle: Destroy Cluster
+menuWeight: 40
+---
 
 Use the following command to shutdown/destroy all resources from your environment.
 

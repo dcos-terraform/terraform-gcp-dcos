@@ -1,4 +1,10 @@
-# Quick Start Guide
+---
+layout: layout.pug
+excerpt: Quickstart for a DC/OS cluster on GCP using Terraform
+title: Quickstart for DC/OS on GCP
+navigationTitle: Quickstart
+menuWeight: 0
+---
 
 If you’re new to Terraform and/or want to deploy DC/OS on GCP quickly and effortlessly - please follow this guide.  We’ll walk you through step-by-step on how to:
 
