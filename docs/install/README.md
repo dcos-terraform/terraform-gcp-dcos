@@ -1,10 +1,4 @@
----
-layout: layout.pug
-excerpt: Install DC/OS cluster on GCP using Terraform
-title: Install DC/OS on GCP 
-navigationTitle: Install
-menuWeight: 10
----
+# Install DC/OS on GCP 
 
 ## Prerequisites
 - [Terraform 0.11.x](https://www.terraform.io/downloads.html)

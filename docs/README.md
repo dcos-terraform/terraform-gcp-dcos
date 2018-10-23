@@ -1,10 +1,6 @@
----
-layout: layout.pug
-excerpt: Deploy DC/OS on GCP using Terraform
-title: dcos-terraform | gcp	
-navigationTitle: GCP
-menuWeight: 30
----
+# dcos-terraform | aws
+
+_Deploy DC/OS on AWS using Terraform_
 
 The purpose of this tool is to automate most of the manual efforts of managing and maintaining distributed systems. This project has a few important goals in mind since the inception of the project.	
 
