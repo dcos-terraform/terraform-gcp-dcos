@@ -28,7 +28,7 @@ cd dcos-installer
 Use the following command to initialize Terraform from this repository. There is no git clone of this repo required as Terraform performs this for you.
 
 ```
-curl -O https://raw.githubusercontent.com/dcos-terraform/terraform-gcp-dcos/master/docs/quickstart/main.tf
+curl -O https://raw.githubusercontent.com/dcos-terraform/terraform-gcp-dcos/master/docs/published/main.tf
 terraform init
 ```
 

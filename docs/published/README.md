@@ -1,8 +1,8 @@
 ---
 layout: layout.pug
-excerpt: Quickstart for a DC/OS cluster on GCP using Terraform
-title: Quickstart for DC/OS on GCP
-navigationTitle: Quickstart
+excerpt: Guide for DC/OS on GCP using Terraform
+title: DC/OS on GCP Terraform
+navigationTitle: GCP Terraform
 menuWeight: 0
 ---
 
