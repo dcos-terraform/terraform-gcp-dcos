@@ -1,5 +1,4 @@
-# Deploy DC/OS on GCP with Terraform
-_Deploy automated installs and upgrades for DC/OS on GCP._
+# Install DC/OS on GCP 
 
 ## Prerequisites
 - [Terraform 0.11.x](https://www.terraform.io/downloads.html)
@@ -23,7 +22,7 @@ cd dcos-installer
 Use the following command to initialize Terraform from this repository. There is no git clone of this repo required as Terraform performs this for you.
 
 ```
-curl -O https://raw.githubusercontent.com/dcos-terraform/terraform-gcp-dcos/master/docs/quickstart/main.tf
+curl -O https://raw.githubusercontent.com/dcos-terraform/terraform-gcp-dcos/master/docs/published/main.tf
 terraform init
 ```
 
@@ -156,6 +155,6 @@ gcp_project = "massive-bliss-781"
 ## Documentation
 
 1. Deploying on GCP
-2. [Upgrading DC/OS](./UPGRADE.md)
-3. [Maintaining Nodes](./MAINTAIN.md)
-4. [Destroy](./DESTROY.md)
+2. [Upgrading DC/OS](./upgrade/README.md)
+3. [Maintaining Nodes](./maintain/README.md)
+4. [Destroy](./destroy/README.md)
