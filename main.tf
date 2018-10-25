@@ -42,7 +42,7 @@ locals {
 
 module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
-  version = "~> 0.0"
+  version = "~> 0.1.0"
 
   cluster_name = "${local.cluster_name}"
 
@@ -90,7 +90,7 @@ module "dcos-infrastructure" {
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-install-remote-exec/null"
-  version = "~> 0.0"
+  version = "~> 0.1.0"
 
   # bootstrap
   bootstrap_ip         = "${module.dcos-infrastructure.bootstrap.public_ip[0]}"

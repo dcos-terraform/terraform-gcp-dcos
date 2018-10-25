@@ -36,7 +36,7 @@ variable "dcos_license_key_contents" {
 
 module "dcos" {
   source  = "dcos-terraform/dcos/gcp"
-  version = "~> 0.0"
+  version = "~> 0.1.0"
 
   cluster_name              = "${var.cluster_name}"
   infra_public_ssh_key_path = "${var.public_ssh_key_path}"
