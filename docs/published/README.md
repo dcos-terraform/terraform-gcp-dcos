@@ -108,11 +108,16 @@ variable "dcos_install_mode" {
   default = "install"
 }
 
+data "http" "whatismyip" {
+  url = "http://whatismyip.akamai.com/"
+}
+
 module "dcos" {
   source = "dcos-terraform/dcos/gcp"
 
   cluster_name        = "my-open-dcos"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
+  admin_ips           = ["${data.http.whatismyip.body}/32"]
 
   num_masters        = "1"
   num_private_agents = "2"
@@ -205,11 +210,16 @@ variable "dcos_install_mode" {
   default = "install"
 }
 
+data "http" "whatismyip" {
+  url = "http://whatismyip.akamai.com/"
+}
+
 module "dcos" {
   source = "dcos-terraform/dcos/gcp"
 
   cluster_name        = "my-open-dcos"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
+  admin_ips           = ["${data.http.whatismyip.body}/32"]
 
   num_masters        = "1"
   num_private_agents = "3"
