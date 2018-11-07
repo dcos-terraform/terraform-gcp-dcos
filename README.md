@@ -22,8 +22,50 @@ module "dcos" {
   num_private_agents = "2"
   num_public_agents = "1"
 
+  dcos_cluster_docker_credentials_enabled =  "true"
+  dcos_cluster_docker_credentials_write_to_etc = "true"
+  dcos_cluster_docker_credentials_dcos_owned = "false"
+  dcos_cluster_docker_registry_url = "https://index.docker.io"
+  dcos_use_proxy = "yes"
+  dcos_http_proxy = "example.com"
+  dcos_https_proxy = "example.com"
+  dcos_no_proxy = <<EOF
+  # YAML
+   - "internal.net"
+   - "169.254.169.254"
+  EOF
+  dcos_overlay_network = <<EOF
+  # YAML
+      vtep_subnet: 44.128.0.0/20
+      vtep_mac_oui: 70:B3:D5:00:00:00
+      overlays:
+        - name: dcos
+          subnet: 12.0.0.0/8
+          prefix: 26
+  EOF
+  dcos_rexray_config = <<EOF
+  # YAML
+    rexray:
+      loglevel: warn
+      modules:
+        default-admin:
+          host: tcp://127.0.0.1:61003
+      storageDrivers:
+      - ec2
+      volume:
+        unmount:
+          ignoreusedcount: true
+  EOF
+  dcos_cluster_docker_credentials = <<EOF
+  # YAML
+    auths:
+      'https://index.docker.io/v1/':
+        auth: Ze9ja2VyY3licmljSmVFOEJrcTY2eTV1WHhnSkVuVndjVEE=
+  EOF
+
+  # dcos_variant              = "ee"
+  # dcos_license_key_contents = "${file("./license.txt")}"
   dcos_variant = "open"
-  # dcos_license_key_contents = ""
 }
 ```
 
@@ -156,7 +198,7 @@ module "dcos" {
 | private_agents_os | [PRIVATE AGENTS] Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `` | no |
 | private_agents_root_volume_size | [PRIVATE AGENTS] Root volume size in GB | string | `120` | no |
 | private_agents_root_volume_type | [PRIVATE AGENTS] Root volume type | string | `pd-ssd` | no |
-| public_agents_additional_ports | List of additional ports on public agents (in addition to 80 and 443) | string | `<list>` | no |
+| public_agents_additional_ports | List of additional ports allowed for public access on public agents (80 and 443 open by default) | string | `<list>` | no |
 | public_agents_gcp_image | [PUBLIC AGENTS] Image to be used | string | `` | no |
 | public_agents_machine_type | [PUBLIC AGENTS] Machine type | string | `n1-standard-4` | no |
 | public_agents_os | [PUBLIC AGENTS] Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `` | no |
