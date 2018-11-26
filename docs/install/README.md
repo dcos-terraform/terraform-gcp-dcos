@@ -76,7 +76,8 @@ The default variables inputs are tracked in the [terraform-gcp-dcos](https://reg
 $ cat main.tf
 ...
 module "dcos" {
-  source = "dcos-terraform/dcos/gcp"
+  source  = "dcos-terraform/dcos/gcp"
+  version = "~> 0.1"
 
   # additional example variables in the module
   dcos_version = "1.11.5"
