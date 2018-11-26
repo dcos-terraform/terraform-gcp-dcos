@@ -8,7 +8,8 @@ data "http" "whatismyip" {
 }
 
 module "dcos" {
-  source = "dcos-terraform/dcos/gcp"
+  source  = "dcos-terraform/dcos/gcp"
+  version = "~> 0.1"
 
   dcos_instance_os    = "coreos_1855.5.0"
   cluster_name        = "my-open-dcos-cluster"
