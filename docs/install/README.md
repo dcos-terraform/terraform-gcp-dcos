@@ -77,7 +77,7 @@ $ cat main.tf
 ...
 module "dcos" {
   source  = "dcos-terraform/dcos/gcp"
-  version = "~> 0.1"
+  version = "~> 0.1.0"
 
   # additional example variables in the module
   dcos_version = "1.11.5"
