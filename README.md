@@ -12,7 +12,7 @@ EXAMPLE
 ```hcl
 module "dcos" {
   source  = "dcos-terraform/dcos/gcp"
-  version = "~> 0.1.0"
+  version = "~> 0.2.0"
 
   cluster_name = "mydcoscluster"
   ssh_public_key_file = "~/.ssh/id_rsa.pub"

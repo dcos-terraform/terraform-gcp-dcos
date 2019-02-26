@@ -13,7 +13,7 @@
  *```hcl
  * module "dcos" {
  *   source  = "dcos-terraform/dcos/gcp"
- *   version = "~> 0.1.0"
+ *   version = "~> 0.2.0"
  *
  *   cluster_name = "mydcoscluster"
  *   ssh_public_key_file = "~/.ssh/id_rsa.pub"
@@ -71,7 +71,9 @@
  *```
  */
 
-provider "google" {}
+provider "google" {
+  version = "~> 2.0"
+}
 
 resource "random_id" "id" {
   byte_length = 2
@@ -84,7 +86,7 @@ locals {
 
 module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
-  version = "~> 0.1.0"
+  version = "~> 0.2.0"
 
   cluster_name = "${local.cluster_name}"
 
