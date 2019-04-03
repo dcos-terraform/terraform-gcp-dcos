@@ -13,7 +13,7 @@
  *```hcl
  * module "dcos" {
  *   source  = "dcos-terraform/dcos/gcp"
- *   version = "~> 0.1.0"
+ *   version = "~> 0.2.0"
  *
  *   cluster_name = "mydcoscluster"
  *   ssh_public_key_file = "~/.ssh/id_rsa.pub"
@@ -214,7 +214,6 @@ module "dcos-core" {
   dcos_gpus_are_scarce                         = "${var.dcos_gpus_are_scarce}"
   dcos_http_proxy                              = "${var.dcos_http_proxy}"
   dcos_https_proxy                             = "${var.dcos_https_proxy}"
-  dcos_install_mode                            = "${var.dcos_install_mode}"
   dcos_ip_detect_contents                      = "${coalesce(var.dcos_ip_detect_contents,file("${path.module}/scripts/ip-detect.sh"))}"
   dcos_ip_detect_public_contents               = "${coalesce(var.dcos_ip_detect_public_contents,file("${path.module}/scripts/ip-detect-public.sh"))}"
   dcos_ip_detect_public_filename               = "${var.dcos_ip_detect_public_filename}"

@@ -138,7 +138,6 @@ module "dcos" {
 | dcos_gpus_are_scarce | Indicates whether to treat GPUs as a scarce resource in the cluster. (optional) | string | `` | no |
 | dcos_http_proxy | the http proxy (optional) | string | `` | no |
 | dcos_https_proxy | the https proxy (optional) | string | `` | no |
-| dcos_install_mode | specifies which type of command to execute. Options: `install` or `upgrade` | string | `install` | no |
 | dcos_instance_os | Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `centos_7.5` | no |
 | dcos_ip_detect_contents | Allows DC/OS to detect your private address. Use this to pass this as an input to the module rather than a file in side your bootstrap node. (recommended) | string | `` | no |
 | dcos_ip_detect_public_contents | Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended) | string | `` | no |
@@ -215,4 +214,3 @@ module "dcos" {
 | masters-ips | Master IP addresses |
 | masters-loadbalancer | This is the load balancer address to access the DC/OS UI |
 | public-agents-loadbalancer | This is the load balancer address to access the DC/OS public agents |
-

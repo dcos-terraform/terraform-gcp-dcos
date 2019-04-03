@@ -14,12 +14,6 @@ terraform get --update
 # change dcos_version = "<desired_version>" in main.tf
 ```
 
-##### Upgrade DC/OS Command
-
-```bash
-terraform apply -var dcos_install_mode=upgrade
-```
-
 ## Documentation
 
 1. [Deploying on GCP](./install/README.md)
