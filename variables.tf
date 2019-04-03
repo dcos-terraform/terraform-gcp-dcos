@@ -5,8 +5,7 @@ variable "cluster_name" {
 
 variable "ssh_public_key" {
   description = "SSH public key in authorized keys format (e.g. 'ssh-rsa ..') to be used with the instances. Make sure you added this key to your ssh-agent."
-
-  default = ""
+  default     = ""
 }
 
 variable "ssh_public_key_file" {
@@ -47,9 +46,7 @@ variable "availability_zones" {
 
 variable "dcos_instance_os" {
   description = "Operating system to use. Instead of using your own AMI you could use a provided OS."
-
-  # default     = "centos_7.4"
-  default = "centos_7.5"
+  default     = "centos_7.5"
 }
 
 variable "bootstrap_gcp_image" {
