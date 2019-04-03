@@ -9,13 +9,9 @@ variable "bootstrap_private_ip" {
 }
 
 variable "dcos_version" {
-  default     = "1.11.4"
-  description = "specifies which dcos version instruction to use. Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/dcos/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/dcos/tf_dcos_core/tree/master/dcos-versions) tree for a full list._"
+  default     = "1.12.3"
+  description = "specifies which dcos version instruction to use. Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/dcos-terraform/terraform-template-dcos-core/blob/master/open/download-variables.tf) or [dcos_version](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/open/dcos-versions) tree for a full list._"
 }
-
-# variable "role" {
-#   description = "specifies which dcos role of commands to run. Options: `dcos-bootstrap`, `dcos-mesos-agent-public`, `dcos-mesos-agent` and `dcos-mesos-master`"
-# }
 
 # DCOS bootstrap node variables
 variable "dcos_security" {
@@ -24,12 +20,8 @@ variable "dcos_security" {
 }
 
 variable "dcos_resolvers" {
-  default = <<EOF
-# YAML
- - "169.254.169.254"
-EOF
-
-  description = "A YAML nested list (-) of DNS resolvers for your DC/OS cluster nodes. (recommended)"
+  default     = ["169.254.169.254"]
+  description = "list of DNS resolvers for your DC/OS cluster nodes. (recommended)"
 }
 
 variable "dcos_skip_checks" {
@@ -84,7 +76,7 @@ variable "dcos_aws_template_storage_secret_access_key" {
 
 variable "dcos_exhibitor_storage_backend" {
   default     = "static"
-  description = "options are aws_s3, azure, or zookeeper (recommended)"
+  description = "options are static, aws_s3, azure, or zookeeper (recommended)"
 }
 
 variable "dcos_exhibitor_zk_hosts" {
@@ -431,7 +423,7 @@ variable "dcos_master_list" {
 }
 
 variable "dcos_public_agent_list" {
-  default     = ""
+  default     = []
   description = "statically set your public agents (not recommended)"
 }
 
@@ -446,12 +438,12 @@ variable "dcos_previous_version_master_index" {
 }
 
 variable "dcos_agent_list" {
-  default     = ""
+  default     = []
   description = "used to list the agents in the config.yaml (optional)"
 }
 
 variable "dcos_bootstrap_port" {
-  default     = "80"
+  default     = "8080"
   description = "used to specify the port of the bootstrap url"
 }
 
@@ -466,7 +458,8 @@ variable "dcos_ip_detect_public_contents" {
 }
 
 variable "dcos_ip_detect_contents" {
-  default     = ""
+  default = ""
+
   description = "Allows DC/OS to detect your private address. Use this to pass this as an input to the module rather than a file in side your bootstrap node. (recommended)"
 }
 
