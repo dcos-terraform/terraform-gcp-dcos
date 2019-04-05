@@ -79,7 +79,7 @@ module "dcos" {
 | admin\_ips | List of CIDR admin IPs | list | n/a | yes |
 | ansible\_additional\_config | Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:` | string | `""` | no |
 | ansible\_bundled\_container | Docker container with bundled dcos-ansible and ansible executables | string | `"mesosphere/dcos-ansible-bundle:latest"` | no |
-| availability\_zones | List of availability_zones to be used as the same format that are required by the platform/cloud providers | list | `<list>` | no |
+| availability\_zones | List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e ['RegionZone'] | list | `<list>` | no |
 | bootstrap\_gcp\_image | [BOOTSTRAP] Image to be used | string | `""` | no |
 | bootstrap\_machine\_type | [BOOTSTRAP] Machine type | string | `"n1-standard-2"` | no |
 | bootstrap\_os | [BOOTSTRAP] Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `""` | no |
