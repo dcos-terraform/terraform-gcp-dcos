@@ -1,7 +1,6 @@
-# Main Variables
 variable "dcos_variant" {
   description = "Main Variables"
-  default = "open"
+  default     = "open"
 }
 
 variable "bootstrap_private_ip" {
@@ -14,7 +13,6 @@ variable "dcos_version" {
   description = "Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list."
 }
 
-# DCOS bootstrap node variables
 variable "dcos_security" {
   default     = ""
   description = "[Enterprise DC/OS] set the security level of DC/OS, either 'strict' or 'permissive'. Default is 'permissive'. (recommended)"
@@ -142,12 +140,12 @@ variable "dcos_exhibitor_address" {
 
 variable "num_of_public_agents" {
   description = "UNDEFINED"
-  default = ""
+  default     = ""
 }
 
 variable "num_of_private_agents" {
   description = "UNDEFINED"
-  default = ""
+  default     = ""
 }
 
 variable "dcos_num_masters" {
@@ -222,7 +220,7 @@ variable "dcos_ca_certificate_path" {
 
 variable "dcos_ca_certificate_key_path" {
   description = "DC/OS CA certificate key path"
-  default = ""
+  default     = ""
 }
 
 variable "dcos_config" {
@@ -484,7 +482,7 @@ variable "custom_dcos_download_path" {
 
 variable "dcos_cluster_docker_registry_enabled" {
   description = "DC/OS cluster docker registry enabled"
-  default = ""
+  default     = ""
 }
 
 variable "dcos_enable_docker_gc" {
