@@ -73,10 +73,11 @@ module "dcos" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| admin\_ips | List of CIDR admin IPs | list | n/a | yes |
+| ssh\_public\_key\_file | Path to SSH public key. This is mandatory but can be set to an empty string if you want to use ssh_public_key with the key as string. | string | n/a | yes |
 | accepted\_internal\_networks | Subnet ranges for all internal networks | list | `<list>` | no |
 | additional\_private\_agent\_ips | Additional private agent IPs. | list | `<list>` | no |
 | additional\_public\_agent\_ips | Additional public agent IPs. | list | `<list>` | no |
-| admin\_ips | List of CIDR admin IPs | list | n/a | yes |
 | ansible\_additional\_config | Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:` | string | `""` | no |
 | ansible\_bundled\_container | Docker container with bundled dcos-ansible and ansible executables | string | `"mesosphere/dcos-ansible-bundle:latest"` | no |
 | availability\_zones | List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e ['RegionZone'] | list | `<list>` | no |
@@ -142,7 +143,7 @@ module "dcos" {
 | dcos\_gpus\_are\_scarce | Indicates whether to treat GPUs as a scarce resource in the cluster. (optional) | string | `""` | no |
 | dcos\_http\_proxy | the http proxy (optional) | string | `""` | no |
 | dcos\_https\_proxy | the https proxy (optional) | string | `""` | no |
-| dcos\_instance\_os | Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `"centos_7.5"` | no |
+| dcos\_instance\_os | Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `"centos-7-v20190326"` | no |
 | dcos\_ip\_detect\_contents | Allows DC/OS to detect your private address. Use this to pass this as an input to the module rather than a file in side your bootstrap node. (recommended) | string | `""` | no |
 | dcos\_ip\_detect\_public\_contents | Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended) | string | `""` | no |
 | dcos\_ip\_detect\_public\_filename | statically set your detect-ip-public path | string | `"genconf/ip-detect-public"` | no |
@@ -210,7 +211,6 @@ module "dcos" {
 | public\_agents\_root\_volume\_size | [PUBLIC AGENTS] Root volume size | string | `"120"` | no |
 | public\_agents\_root\_volume\_type | [PUBLIC AGENTS] Specify the root volume type. | string | `"pd-ssd"` | no |
 | ssh\_public\_key | SSH public key in authorized keys format (e.g. 'ssh-rsa ..') to be used with the instances. Make sure you added this key to your ssh-agent. | string | `""` | no |
-| ssh\_public\_key\_file | Path to SSH public key. This is mandatory but can be set to an empty string if you want to use ssh_public_key with the key as string. | string | n/a | yes |
 | subnet\_range | Private IP space to be used in CIDR format | string | `"172.16.0.0/16"` | no |
 
 ## Outputs
