@@ -1,5 +1,0 @@
-cluster_name = "dcos-example"
-dcos_cluster_name = "dcos-example"
-ssh_public_key_file = "~/.ssh/id_rsa.pub"
-dcos_version = "1.11.4"
-project_id = "massive-bliss-781"
