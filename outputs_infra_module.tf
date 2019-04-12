@@ -58,6 +58,11 @@ output "infrastructure.bootstrap.public_ip" {
   value       = "${module.dcos-infrastructure.bootstrap.public_ip}"
 }
 
+output "infrastructure.masters.zone_list" {
+  description = "Master instances zone list"
+  value       = "${module.dcos-infrastructure.masters.zone_list}"
+}
+
 output "infrastructure.masters.public_ips" {
   description = "Master instances public IPs"
   value       = "${module.dcos-infrastructure.masters.public_ips}"
@@ -73,6 +78,11 @@ output "infrastructure.masters.subnetwork_name" {
   value       = "${module.dcos-infrastructure.masters.subnetwork_name}"
 }
 
+output "infrastructure.private_agents.zone_list" {
+  description = "Private Agent zone list"
+  value       = "${module.dcos-infrastructure.private_agents.zone_list}"
+}
+
 output "infrastructure.private_agents.public_ips" {
   description = "Private Agent public IPs"
   value       = "${module.dcos-infrastructure.private_agents.public_ips}"
@@ -86,6 +96,11 @@ output "infrastructure.private_agents.private_ips" {
 output "infrastructure.private_agents.subnetwork_name" {
   description = "Private Agent instances subnetwork name"
   value       = "${module.dcos-infrastructure.private_agents.subnetwork_name}"
+}
+
+output "infrastructure.public_agents.zone_list" {
+  description = "Public Agent zone list"
+  value       = "${module.dcos-infrastructure.public_agents.zone_list}"
 }
 
 output "infrastructure.public_agents.public_ips" {
