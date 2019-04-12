@@ -217,6 +217,27 @@ module "dcos" {
 
 | Name | Description |
 |------|-------------|
+| infrastructure.bootstrap.os\_user | Bootstrap instance OS default user |
+| infrastructure.bootstrap.prereq-id | Returns the ID of the prereq script for bootstrap (if user_data or ami are not used) |
+| infrastructure.bootstrap.private\_ip | Private IP of the bootstrap instance |
+| infrastructure.bootstrap.public\_ip | Public IP of the bootstrap instance |
+| infrastructure.forwarding\_rules.masters | Master Forwarding Rules |
+| infrastructure.forwarding\_rules.public\_agents | Public Agent Forwarding Rules |
+| infrastructure.masters.os\_user | Master instances private OS default user |
+| infrastructure.masters.prereq-id | Returns the ID of the prereq script for masters (if user_data or ami are not used) |
+| infrastructure.masters.private\_ips | Master instances private IPs |
+| infrastructure.masters.public\_ips | Master instances public IPs |
+| infrastructure.masters.subnetwork\_name | Master instances subnetwork name |
+| infrastructure.private\_agents.os\_user | Private Agent instances private OS default user |
+| infrastructure.private\_agents.prereq-id | Returns the ID of the prereq script for private agents (if user_data or ami are not used) |
+| infrastructure.private\_agents.private\_ips | Private Agent instances private IPs |
+| infrastructure.private\_agents.public\_ips | Private Agent public IPs |
+| infrastructure.private\_agents.subnetwork\_name | Private Agent instances subnetwork name |
+| infrastructure.public\_agents.os\_user | Private Agent instances private OS default user |
+| infrastructure.public\_agents.prereq-id | Returns the ID of the prereq script for public agents (if user_data or ami are not used) |
+| infrastructure.public\_agents.private\_ips | Public Agent instances private IPs |
+| infrastructure.public\_agents.public\_ips | Public Agent public IPs |
+| infrastructure.public\_agents.subnetwork\_name | Public Agent instances subnetwork name |
 | masters-ips | Master IP addresses |
 | masters-loadbalancer | This is the load balancer address to access the DC/OS UI |
 | public-agents-loadbalancer | This is the load balancer address to access the DC/OS public agents |
