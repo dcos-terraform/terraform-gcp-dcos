@@ -86,10 +86,10 @@ module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
   version = "~> 0.2.0"
 
-  cluster_name = "${local.cluster_name}"
-
-  infra_dcos_instance_os    = "${var.dcos_instance_os}"
-  infra_public_ssh_key_path = "${var.ssh_public_key_file}"
+  cluster_name               = "${local.cluster_name}"
+  accepted_internal_networks = "${var.accepted_internal_networks}"
+  infra_dcos_instance_os     = "${var.dcos_instance_os}"
+  infra_public_ssh_key_path  = "${var.ssh_public_key_file}"
 
   bootstrap_image            = "${var.bootstrap_gcp_image}"
   bootstrap_machine_type     = "${var.bootstrap_machine_type}"
