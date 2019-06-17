@@ -117,3 +117,8 @@ output "infrastructure.public_agents.subnetwork_name" {
   description = "Public Agent instances subnetwork name"
   value       = "${module.dcos-infrastructure.public_agents.subnetwork_name}"
 }
+
+output "infrastructure.network_self_link" {
+  description = "Self link of created network"
+  value       = "${module.dcos-infrastructure.network_self_link}"
+}
