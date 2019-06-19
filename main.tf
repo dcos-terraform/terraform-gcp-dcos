@@ -123,8 +123,6 @@ module "dcos-infrastructure" {
 
   labels = "${var.labels}"
 
-  dcos_version = "${var.dcos_version}"
-
   providers = {
     google = "google"
   }
