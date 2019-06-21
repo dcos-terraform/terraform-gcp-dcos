@@ -143,6 +143,7 @@ module "dcos" {
 | dcos\_gpus\_are\_scarce | Indicates whether to treat GPUs as a scarce resource in the cluster. (optional) | string | `""` | no |
 | dcos\_http\_proxy | http proxy (optional) | string | `""` | no |
 | dcos\_https\_proxy | https proxy (optional) | string | `""` | no |
+| dcos\_image\_commit | The commit hash for the build of DC/OS | string | `""` | no |
 | dcos\_instance\_os | Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `"centos_7.5"` | no |
 | dcos\_ip\_detect\_contents | Allows DC/OS to detect your private address. Use this to pass this as an input to the module rather than a file in side your bootstrap node. (recommended) | string | `""` | no |
 | dcos\_ip\_detect\_public\_contents | Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended) | string | `""` | no |
@@ -184,7 +185,7 @@ module "dcos" {
 | dcos\_ucr\_default\_bridge\_subnet | IPv4 subnet allocated to the mesos-bridge CNI network for UCR bridge-mode networking. (optional) | string | `""` | no |
 | dcos\_use\_proxy | To enable use of proxy for internal routing (optional) | string | `""` | no |
 | dcos\_variant | Specifies which DC/OS variant it should be: `open` (Open Source) or `ee` (Enterprise Edition) | string | `"open"` | no |
-| dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list. | string | `"1.12.3"` | no |
+| dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list. | string | `"1.13.1"` | no |
 | dcos\_zk\_agent\_credentials | [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended) | string | `""` | no |
 | dcos\_zk\_master\_credentials | [Enterprise DC/OS] set the ZooKeeper master credentials (recommended) | string | `""` | no |
 | dcos\_zk\_super\_credentials | [Enterprise DC/OS] set the zk super credentials (recommended) | string | `""` | no |
@@ -229,6 +230,7 @@ module "dcos" {
 | infrastructure.masters.public\_ips | Master instances public IPs |
 | infrastructure.masters.subnetwork\_name | Master instances subnetwork name |
 | infrastructure.masters.zone\_list | Master instances zone list |
+| infrastructure.network\_self\_link | Self link of created network |
 | infrastructure.private\_agents.os\_user | Private Agent instances private OS default user |
 | infrastructure.private\_agents.prereq-id | Returns the ID of the prereq script for private agents (if user_data or ami are not used) |
 | infrastructure.private\_agents.private\_ips | Private Agent instances private IPs |
