@@ -80,7 +80,7 @@ module "dcos" {
 | additional\_public\_agent\_ips | Additional public agent IPs. | list | `<list>` | no |
 | ansible\_additional\_config | Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:` | string | `""` | no |
 | ansible\_bundled\_container | Docker container with bundled dcos-ansible and ansible executables | string | `"mesosphere/dcos-ansible-bundle:latest"` | no |
-| availability\_zones | List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e ['RegionZone'] | list | `<list>` | no |
+| availability\_zones | List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e `['RegionZone']` | list | `<list>` | no |
 | bootstrap\_gcp\_image | [BOOTSTRAP] Image to be used | string | `""` | no |
 | bootstrap\_machine\_type | [BOOTSTRAP] Machine type | string | `"n1-standard-2"` | no |
 | bootstrap\_os | [BOOTSTRAP] Operating system to use. Instead of using your own AMI you could use a provided OS. | string | `""` | no |
@@ -184,7 +184,7 @@ module "dcos" {
 | dcos\_ucr\_default\_bridge\_subnet | IPv4 subnet allocated to the mesos-bridge CNI network for UCR bridge-mode networking. (optional) | string | `""` | no |
 | dcos\_use\_proxy | To enable use of proxy for internal routing (optional) | string | `""` | no |
 | dcos\_variant | Specifies which DC/OS variant it should be: `open` (Open Source) or `ee` (Enterprise Edition) | string | `"open"` | no |
-| dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list. | string | `"1.12.3"` | no |
+| dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.13.3, 1.12.4, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list. | string | `"1.13.3"` | no |
 | dcos\_zk\_agent\_credentials | [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended) | string | `""` | no |
 | dcos\_zk\_master\_credentials | [Enterprise DC/OS] set the ZooKeeper master credentials (recommended) | string | `""` | no |
 | dcos\_zk\_super\_credentials | [Enterprise DC/OS] set the zk super credentials (recommended) | string | `""` | no |
@@ -218,25 +218,22 @@ module "dcos" {
 | Name | Description |
 |------|-------------|
 | infrastructure.bootstrap.os\_user | Bootstrap instance OS default user |
-| infrastructure.bootstrap.prereq-id | Returns the ID of the prereq script for bootstrap (if user_data or ami are not used) |
 | infrastructure.bootstrap.private\_ip | Private IP of the bootstrap instance |
 | infrastructure.bootstrap.public\_ip | Public IP of the bootstrap instance |
 | infrastructure.forwarding\_rules.masters | Master Forwarding Rules |
 | infrastructure.forwarding\_rules.public\_agents | Public Agent Forwarding Rules |
-| infrastructure.masters.os\_user | Master instances private OS default user |
-| infrastructure.masters.prereq-id | Returns the ID of the prereq script for masters (if user_data or ami are not used) |
+| infrastructure.masters.os\_user | Master instances OS default user |
 | infrastructure.masters.private\_ips | Master instances private IPs |
 | infrastructure.masters.public\_ips | Master instances public IPs |
 | infrastructure.masters.subnetwork\_name | Master instances subnetwork name |
 | infrastructure.masters.zone\_list | Master instances zone list |
-| infrastructure.private\_agents.os\_user | Private Agent instances private OS default user |
-| infrastructure.private\_agents.prereq-id | Returns the ID of the prereq script for private agents (if user_data or ami are not used) |
+| infrastructure.network\_self\_link | Self link of created network |
+| infrastructure.private\_agents.os\_user | Private Agent instances OS default user |
 | infrastructure.private\_agents.private\_ips | Private Agent instances private IPs |
 | infrastructure.private\_agents.public\_ips | Private Agent public IPs |
 | infrastructure.private\_agents.subnetwork\_name | Private Agent instances subnetwork name |
 | infrastructure.private\_agents.zone\_list | Private Agent zone list |
-| infrastructure.public\_agents.os\_user | Private Agent instances private OS default user |
-| infrastructure.public\_agents.prereq-id | Returns the ID of the prereq script for public agents (if user_data or ami are not used) |
+| infrastructure.public\_agents.os\_user | Public Agent instances OS default user |
 | infrastructure.public\_agents.private\_ips | Public Agent instances private IPs |
 | infrastructure.public\_agents.public\_ips | Public Agent public IPs |
 | infrastructure.public\_agents.subnetwork\_name | Public Agent instances subnetwork name |
