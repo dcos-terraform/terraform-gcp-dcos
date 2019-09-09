@@ -131,11 +131,14 @@ module "dcos-infrastructure" {
 module "dcos-install" {
   source = "dcos-terraform/dcos-install-remote-exec/null"
 
-  version = "~> 0.2.0"
+  version = "~> 0.2.3"
 
   # ansible related config
   ansible_bundled_container = "${var.ansible_bundled_container}"
   ansible_additional_config = "${var.ansible_additional_config}"
+
+  # Ability to change version service url
+  dcos_versions_service_url = "${var.dcos_versions_service_url}"
 
   # bootstrap
   bootstrap_ip         = "${module.dcos-infrastructure.bootstrap.public_ip}"
@@ -163,6 +166,7 @@ module "dcos-install" {
   # DC/OS options
   dcos_cluster_name                            = "${coalesce(var.dcos_cluster_name, local.cluster_name)}"
   custom_dcos_download_path                    = "${var.custom_dcos_download_path}"
+  dcos_download_url_checksum                   = "${var.dcos_download_url_checksum}"
   dcos_adminrouter_tls_1_0_enabled             = "${var.dcos_adminrouter_tls_1_0_enabled}"
   dcos_adminrouter_tls_1_1_enabled             = "${var.dcos_adminrouter_tls_1_1_enabled}"
   dcos_adminrouter_tls_1_2_enabled             = "${var.dcos_adminrouter_tls_1_2_enabled}"
