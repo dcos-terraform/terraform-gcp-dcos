@@ -117,6 +117,8 @@ module "dcos-infrastructure" {
   public_agent_disk_type         = "${var.public_agents_root_volume_type}"
   public_agents_additional_ports = ["${var.public_agents_additional_ports}"]
 
+  adminrouter_grpc_proxy_port    = "${var.adminrouter_grpc_proxy_port}"
+
   num_masters        = "${var.num_masters}"
   num_private_agents = "${var.num_private_agents}"
   num_public_agents  = "${var.num_public_agents}"
@@ -271,4 +273,5 @@ module "dcos-install" {
   dcos_zk_master_credentials                   = "${var.dcos_zk_master_credentials}"
   dcos_zk_super_credentials                    = "${var.dcos_zk_super_credentials}"
   dcos_enable_mesos_input_plugin               = "${var.dcos_enable_mesos_input_plugin}"
+  adminrouter_grpc_proxy_port                  = "${var.adminrouter_grpc_proxy_port}"
 }
