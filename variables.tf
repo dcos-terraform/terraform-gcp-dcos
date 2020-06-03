@@ -29,17 +29,17 @@ variable "num_public_agents" {
 
 variable "labels" {
   description = "Add custom labels to all resources"
-  type        = "map"
+  type        = map(string)
   default     = {}
 }
 
 variable "admin_ips" {
   description = "List of CIDR admin IPs"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "availability_zones" {
-  type        = "list"
+  type        = list(string)
   description = "List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e `['RegionZone']`"
   default     = []
 }
@@ -151,7 +151,7 @@ variable "public_agents_additional_ports" {
 
 variable "public_agents_access_ips" {
   description = "List of ips allowed access to public agents. admin_ips are joined to this list"
-  type        = "list"
+  type        = list(string)
   default     = ["0.0.0.0/0"]
 }
 
@@ -162,7 +162,7 @@ variable "cluster_name_random_string" {
 
 variable "accepted_internal_networks" {
   description = "Subnet ranges for all internal networks"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -190,3 +190,4 @@ variable "ansible_additional_config" {
   default     = ""
   description = "Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:`"
 }
+
