@@ -86,7 +86,7 @@ locals {
 
 module "dcos-infrastructure" {
   source  = "dcos-terraform/infrastructure/gcp"
-  version = "~> 0.2.0"
+  version = "~> 0.3.0"
 
   cluster_name               = local.cluster_name
   accepted_internal_networks = var.accepted_internal_networks
@@ -133,7 +133,7 @@ module "dcos-infrastructure" {
 module "dcos-install" {
   source = "dcos-terraform/dcos-install-remote-exec/null"
 
-  version = "~> 0.2.4"
+  version = "~> 0.3.0"
 
   # ansible related config
   ansible_bundled_container = var.ansible_bundled_container
@@ -291,4 +291,3 @@ module "dcos-install" {
   dcos_zk_super_credentials                    = var.dcos_zk_super_credentials
   dcos_enable_mesos_input_plugin               = var.dcos_enable_mesos_input_plugin
 }
-
