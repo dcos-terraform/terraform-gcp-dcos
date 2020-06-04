@@ -143,32 +143,32 @@ module "dcos-install" {
   dcos_versions_service_url = var.dcos_versions_service_url
 
   # bootstrap
-  bootstrap_ip         = module.dcos-infrastructure.bootstrap.public_ip
-  bootstrap_private_ip = module.dcos-infrastructure.bootstrap.private_ip
-  bootstrap_os_user    = module.dcos-infrastructure.bootstrap.os_user
+  bootstrap_ip         = module.dcos-infrastructure.bootstrap_public_ip
+  bootstrap_private_ip = module.dcos-infrastructure.bootstrap_private_ip
+  bootstrap_os_user    = module.dcos-infrastructure.bootstrap_os_user
 
   # master
-  master_ips         = [module.dcos-infrastructure.masters.public_ips]
-  master_private_ips = [module.dcos-infrastructure.masters.private_ips]
-  masters_os_user    = module.dcos-infrastructure.masters.os_user
+  master_ips         = [module.dcos-infrastructure.masters_public_ips]
+  master_private_ips = [module.dcos-infrastructure.masters_private_ips]
+  masters_os_user    = module.dcos-infrastructure.masters_os_user
   num_masters        = var.num_masters
 
   # private agent
-  private_agent_ips = [module.dcos-infrastructure.private_agents.public_ips]
+  private_agent_ips = [module.dcos-infrastructure.private_agents_public_ips]
   private_agent_private_ips = [concat(
-    module.dcos-infrastructure.private_agents.private_ips,
+    module.dcos-infrastructure.private_agents_private_ips,
     var.additional_private_agent_ips,
   )]
-  private_agents_os_user = module.dcos-infrastructure.private_agents.os_user
+  private_agents_os_user = module.dcos-infrastructure.private_agents_os_user
   num_private_agents     = var.num_private_agents
 
   # public agent
-  public_agent_ips = [module.dcos-infrastructure.public_agents.public_ips]
+  public_agent_ips = [module.dcos-infrastructure.public_agents_public_ips]
   public_agent_private_ips = [concat(
-    module.dcos-infrastructure.public_agents.private_ips,
+    module.dcos-infrastructure.public_agents_private_ips,
     var.additional_public_agent_ips,
   )]
-  public_agents_os_user = module.dcos-infrastructure.public_agents.os_user
+  public_agents_os_user = module.dcos-infrastructure.public_agents_os_user
   num_public_agents     = var.num_public_agents
 
   # DC/OS options
@@ -252,7 +252,7 @@ module "dcos-install" {
   dcos_master_dns_bindall        = var.dcos_master_dns_bindall
   dcos_master_external_loadbalancer = coalesce(
     var.dcos_master_external_loadbalancer,
-    module.dcos-infrastructure.forwarding_rules.masters,
+    module.dcos-infrastructure.forwarding_rules_masters,
   )
   dcos_master_list                             = [var.dcos_master_list]
   dcos_mesos_container_log_sink                = var.dcos_mesos_container_log_sink
