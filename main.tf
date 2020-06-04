@@ -116,7 +116,7 @@ module "dcos-infrastructure" {
   public_agent_dcos_instance_os  = var.public_agents_os
   public_agent_disk_size         = var.public_agents_root_volume_size
   public_agent_disk_type         = var.public_agents_root_volume_type
-  public_agents_additional_ports = [var.public_agents_additional_ports]
+  public_agents_additional_ports = var.public_agents_additional_ports
 
   num_masters        = var.num_masters
   num_private_agents = var.num_private_agents
@@ -148,26 +148,26 @@ module "dcos-install" {
   bootstrap_os_user    = module.dcos-infrastructure.bootstrap_os_user
 
   # master
-  master_ips         = [module.dcos-infrastructure.masters_public_ips]
-  master_private_ips = [module.dcos-infrastructure.masters_private_ips]
+  master_ips         = module.dcos-infrastructure.masters_public_ips
+  master_private_ips = module.dcos-infrastructure.masters_private_ips
   masters_os_user    = module.dcos-infrastructure.masters_os_user
   num_masters        = var.num_masters
 
   # private agent
-  private_agent_ips = [module.dcos-infrastructure.private_agents_public_ips]
-  private_agent_private_ips = [concat(
+  private_agent_ips = module.dcos-infrastructure.private_agents_public_ips
+  private_agent_private_ips = concat(
     module.dcos-infrastructure.private_agents_private_ips,
     var.additional_private_agent_ips,
-  )]
+  )
   private_agents_os_user = module.dcos-infrastructure.private_agents_os_user
   num_private_agents     = var.num_private_agents
 
   # public agent
-  public_agent_ips = [module.dcos-infrastructure.public_agents_public_ips]
-  public_agent_private_ips = [concat(
+  public_agent_ips = module.dcos-infrastructure.public_agents_public_ips
+  public_agent_private_ips = concat(
     module.dcos-infrastructure.public_agents_private_ips,
     var.additional_public_agent_ips,
-  )]
+  )
   public_agents_os_user = module.dcos-infrastructure.public_agents_os_user
   num_public_agents     = var.num_public_agents
 
@@ -254,7 +254,7 @@ module "dcos-install" {
     var.dcos_master_external_loadbalancer,
     module.dcos-infrastructure.forwarding_rules_masters,
   )
-  dcos_master_list                             = [var.dcos_master_list]
+  dcos_master_list                             = var.dcos_master_list
   dcos_mesos_container_log_sink                = var.dcos_mesos_container_log_sink
   dcos_mesos_dns_set_truncate_bit              = var.dcos_mesos_dns_set_truncate_bit
   dcos_mesos_max_completed_tasks_per_framework = var.dcos_mesos_max_completed_tasks_per_framework
@@ -270,7 +270,7 @@ module "dcos-install" {
   dcos_previous_version_master_index           = var.dcos_previous_version_master_index
   dcos_process_timeout                         = var.dcos_process_timeout
   dcos_public_agent_list                       = var.dcos_public_agent_list
-  dcos_resolvers                               = [var.dcos_resolvers]
+  dcos_resolvers                               = var.dcos_resolvers
   dcos_rexray_config                           = var.dcos_rexray_config
   dcos_rexray_config_filename                  = var.dcos_rexray_config_filename
   dcos_rexray_config_method                    = var.dcos_rexray_config_method
