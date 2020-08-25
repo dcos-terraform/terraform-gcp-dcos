@@ -46,7 +46,7 @@ variable "availability_zones" {
 
 variable "dcos_instance_os" {
   description = "Operating system to use. Instead of using your own AMI you could use a provided OS."
-  default     = "centos_7.5"
+  default     = "centos_7"
 }
 
 variable "bootstrap_gcp_image" {
@@ -190,4 +190,3 @@ variable "ansible_additional_config" {
   default     = ""
   description = "Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:`"
 }
-
